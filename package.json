@@ -1,0 +1,22 @@
+{
+  "name": "uda",
+  "version": "0.0.1",
+  "description": "Uda interdisciplinare TISPIT, Informatica e Sistemi e Reti",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicolaMenolas03/uda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicolaMenolas03/uda/issues"
+  },
+  "homepage": "https://github.com/NicolaMenolas03/uda#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
