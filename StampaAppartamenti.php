@@ -1,0 +1,51 @@
+<?php
+session_start();
+error_reporting(0);
+    require_once('ConnessionDB.php');
+
+    echo "
+    <form action='StampaAppartamenti.php' method='POST'>
+    <input type='text' name='search' placeholder='es. Bari'>
+    <input type='submit' name='submit' value='Cerca'>
+    </form>";
+
+    if($_POST['search'])
+    {
+        $SH = $_POST['search'];
+        $sql = "SELECT * FROM appartamenti WHERE Toponimo='$SH'";
+    }
+    else
+    {
+        $sql = "SELECT * FROM appartamenti";
+    }
+    $result = mysqli_query($conn, $sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        $i=0;
+        while($row = mysqli_fetch_assoc($result)) {
+            $Nome[$i] = $row['Descrizione'];
+            $Prezzo[$i] = $row['Prezzo'];
+            $Via[$i] = $row['Toponimo'] . ": " . $row['Nomevia'];
+            $i++;
+        }
+    } else {
+        echo "0 results";
+    }
+    
+    mysqli_close($conn);
+    
+
+    $i--;
+        
+        for($x=-1; $x<$i; $i--)
+        {
+            echo"    <form action='AcquistoElettronica.php' method='POST'>
+            ". "<br><hr><br><b>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='checkbox' name='Appartamenti[]' value='$Nome[$i]'>";
+        }
+        echo "<hr>";
+        echo "<br><br><input type='submit' value='avanti'>
+        </form>";
+    
+
+?>

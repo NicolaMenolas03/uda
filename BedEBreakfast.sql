@@ -1,5 +1,5 @@
-CREATE DATABASE BedEBreakfast;
-USE BedEBreakfast;
+
+USE brx553jfhvrjufqsjwzs;
 
 Create TABLE Proprietari(
 IdProprietario INTEGER AUTO_INCREMENT primary key not null,
@@ -28,7 +28,7 @@ Descrizione VARCHAR(1000) not null,
 idProprietario INTEGER not null,
 Posizione VARCHAR(500) not null,
 FOREIGN KEY (idComuneApp) REFERENCES comuni(IdComune),
-FOREIGN KEY (idProprietario) REFERENCES proprietario(IdProprietario)    
+FOREIGN KEY (idProprietario) REFERENCES Proprietari(IdProprietario)    
 )engine='InnoDB';
 
 Create TABLE clienti(
@@ -59,7 +59,7 @@ FOREIGN KEY (usernameCliente) REFERENCES clienti(UsernameCliente)
 )engine='InnoDB';
 
 
-INSERT INTO proprietari(Nome, Cognome, Telefono, Email) 
+INSERT INTO Proprietari(Nome, Cognome, Telefono, Email) 
 VALUES 
 
 ("Rocco","Siffredi","3439469753","membrogrosso@gmail.com"),
