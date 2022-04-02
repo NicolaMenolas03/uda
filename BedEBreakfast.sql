@@ -39,7 +39,7 @@ Telefono VARCHAR(15) not null,
 Email VARCHAR(30) not null,
 Password VARCHAR(256) not null,
 Toponimo VARCHAR(10) not null,
-Nomevia VARCHAR(20) not null,
+Nomevia VARCHAR(40) not null,
 Civico INTEGER(3) not null,
 idComuneCli INTEGER not null,
 FOREIGN KEY (idComuneCli) REFERENCES comuni(IdComune),
@@ -97,13 +97,13 @@ VALUES
 (96263,"Barcellona","BL","Spagna");
 
 INSERT INTO appartamenti(Toponimo, Nomevia, Civico, idComuneApp, Prezzo, Descrizione, idProprietario, Posizione) 
-VALUES ("de Grecis","Via Guido La Vespa",86,3,130,"pipo",3,"centrale")
+VALUES ("de Grecis","Via Guido La Vespa",86,3,130,"pipo",3,"centrale");
 
 INSERT INTO clienti(UsernameCliente, Nome, Cognome, Telefono, Email, Password, Toponimo, Nomevia, Civico, idComuneCli, NumCreditCard, TipoCreditCard) 
 VALUES 
-("Prismer", "andrea", "tauro", "3351323456", "faiilserio@gmail.com", "SiSonoSerio", "tOPONIMO", "Via Le Dita Dal Naso", 69,1,1234567890123456, "visa")
-("Pluto", "andrea", "Menolascina", "234675442", "MenoPluto@gmail.com", "PlutonePaperone", "slet", "Via Le Dita Dal Culo", 69,1,2569526895795621, "visa")
-("LeccoLaGaFi", "Lecco", "Tutto", "1234567890", "LeccaLecca@gmail.com", "Mammamamma", "CatCalling", "Via Dante Alighieri", 69,1,5743219549256384, "visa")
-("SickG", "Giulio", "Catania", "3345678921", "SICKG@gmail.com", "NonSonoSerio", "Madre", "Via Bossetti Dal Carcere", 69,1,4507890135702589, "visa")
-("FakeTrader", "Gabriele", "Squeo", "7824246743", "SuperFakeMoney@gmail.com", "ClapClap", "TRADER", "Via Le Indulgenze Dalla Chiesa", 69,1,3598701587632549, "visa")
-("CaccaPupu", "cacca", "Pupu", "123492321", "Caccona@gmail.com", "PAPPAPPPPPA", "SLAPP", "Via Il Monopattino Della Macchia", 69,1,0854963023485791, "visa")
+("Prismer", "andrea", "tauro", "3351323456", "faiilserio@gmail.com", "SiSonoSerio", "tOPONIMO", "Via Dal Naso", 69,1,1234567890123456, "visa"),
+("Pluto", "andrea", "Menolascina", "234675442", "MenoPluto@gmail.com", "PlutonePaperone", "slet", "Via Dal Culo", 69,1,2569526895795621, "visa"),
+("LeccoLaGaFi", "Lecco", "Tutto", "1234567890", "LeccaLecca@gmail.com", "Mammamamma", "CatCalling", "Via Dante Alighieri", 69,1,5743219549256384, "visa"),
+("SickG", "Giulio", "Catania", "3345678921", "SICKG@gmail.com", "NonSonoSerio", "Madre", "Via Bossetti Dal Carcere", 69,1,4507890135702589, "visa"),
+("FakeTrader", "Gabriele", "Squeo", "7824246743", "SuperFakeMoney@gmail.com", "ClapClap", "TRADER", "Via Dalla Chiesa", 69,1,3598701587632549, "visa"),
+("CaccaPupu", "cacca", "Pupu", "123492321", "Caccona@gmail.com", "PAPPAPPPPPA", "SLAPP", "Via Della Macchia", 69,1,0854963023485791, "visa");
