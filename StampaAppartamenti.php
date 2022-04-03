@@ -12,7 +12,7 @@ error_reporting(0);
     if($_POST['search'])
     {
         $SH = $_POST['search'];
-        $sql = "SELECT * FROM appartamenti WHERE Toponimo='$SH'";
+        $sql = "SELECT * FROM appartamenti WHERE Toponimo LIKE '$SH%'";
     }
     else
     {
@@ -41,7 +41,7 @@ error_reporting(0);
         for($x=-1; $x<$i; $i--)
         {
             echo"    <form action='AcquistoElettronica.php' method='POST'>
-            ". "<br><hr><br><b>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='checkbox' name='Appartamenti[]' value='$Nome[$i]'>";
+            ". "<br><hr><br><b>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$Nome[$i]'>";
         }
         echo "<hr>";
         echo "<br><br><input type='submit' value='avanti'>
