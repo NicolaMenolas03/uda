@@ -40,7 +40,8 @@ error_reporting(0);
         
         for($x=-1; $x<$i; $i--)
         {
-            echo"    <form action='AcquistoElettronica.php' method='POST'>
+            $_SESSION['ok'] = $Nome[$i];
+            echo"    <form action='SceltaDate.php' method='POST'>
             ". "<br><hr><br><b>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$Nome[$i]'>";
         }
         echo "<hr>";
