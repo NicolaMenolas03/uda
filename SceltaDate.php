@@ -5,6 +5,7 @@
 <input type='submit' name='submit' value='Conferma date'>
 </form>
 
+
 <?php
 session_start();
 $Appartamenti = $_SESSION['ok'];
@@ -14,9 +15,17 @@ if(isset($_POST['submit']))
 {
     $start = strtotime($_POST['checkin']);
     $end = strtotime($_POST['checkout']);
-    
-    $days_between = ceil(abs($end - $start) / 86400);
-    echo "Le date sono: " . $days_between . "<br>";
+    $oggi = date('Y-m-d');
+    $startcontrol = $_POST['checkin'];
+    if($start<$end && $startcontrol > $oggi)
+    {
+        $days_between = ceil(abs($end - $start) / 86400);
+        echo "Le date sono: " . $days_between . "<br>";
+    }
+    else{
+        echo "Errore nelle date";
+        $days_between = 0;
+    }
 }
 else
 {
@@ -42,7 +51,6 @@ if (mysqli_num_rows($result) > 0) {
 }
 $PrezzoF = $Prezzo * $days_between;
 
-echo "Il prezzo e': " . $PrezzoF . "<br>";
-
-
+echo "<br><br>Il prezzo e': " . $PrezzoF . "<br>";
 ?>
+<button><a href="paga.php">Avanti</a></button>
