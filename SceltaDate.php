@@ -43,6 +43,7 @@ if (mysqli_num_rows($result) > 0) {
         if($row['Descrizione'] == $Appartamenti)
         {
             $Prezzo = $row['Prezzo'];
+            $IDAPP = $row['IdAppartamento'];
         }
         
     }
@@ -52,5 +53,30 @@ if (mysqli_num_rows($result) > 0) {
 $PrezzoF = $Prezzo * $days_between;
 
 echo "<br><br>Il prezzo e': " . $PrezzoF . "<br>";
+echo "<br><br><br>";
+
+$sql = "SELECT * FROM appartamenti, Proprietari WHERE appartamenti.idProprietario = Proprietari.IdProprietario and appartamenti.idAppartamento = $IDAPP";
+$result = mysqli_query($conn, $sql);
+ 
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) 
+    {
+        $IdProprietario = $row["IdProprietario"];
+        $Nome = $row["Nome"];
+        $Cognome = $row["Cognome"];
+        $Telefono = $row["Telefono"];
+        $Email = $row["Email"];
+	}
+} else {
+    echo "0 results";
+}
+echo "Dati del propietario<br><br>";
+echo "Nome: ".$Nome;
+echo "<br>Cognome: ".$Cognome;
+echo "<br>Telefono: ".$Telefono;
+echo "<br>Email: ".$Email."<br>";
+mysqli_close($conn);
+
 ?>
 <button><a href="paga.php">Avanti</a></button>
