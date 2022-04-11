@@ -57,13 +57,9 @@
         }
 
         function controllousername($username){
-<<<<<<< Updated upstream
             
             require_once('ConnessionDB.php');
 
-=======
-            require_once('ConnessionDB.php');
->>>>>>> Stashed changes
             $sql="SELECT UsernameCliente FROM clienti"; 
             $result=mysqli_query($conn,$sql);
             while($row=mysqli_fetch_array($result)){

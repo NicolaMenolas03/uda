@@ -28,12 +28,12 @@
                     
                         require_once('ConnessionDB.php');
 
-                        $sql="SELECT IdComune,Comune FROM comuni"; 
+                        $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
                         $result=mysqli_query($conn,$sql); ?>
                         <option name="comune" value="-1">-Seleziona Comune-</option>
                         <?php
                         while($row=mysqli_fetch_array($result)){
-                            echo "<option name='comune' value='".$row['IdComune']."'>".$row['Comune']."</option>";
+                            echo "<option name='comune' value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
                         } 
                         
                     ?>
