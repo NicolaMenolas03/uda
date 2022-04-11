@@ -1,10 +1,10 @@
 <html>
     <form method="POST">
-        Nome<input type="text" name="nome"><br>
-        Cognome<input type="text" name="cognome"><br>
-        Telefono<input type="text" name="telefono"><br>
-        Città<input type="text" name="citta"><br>
-        Comune  <select id="comuni">
+        Nome<input type="text" name="nome" required><br>
+        Cognome<input type="text" name="cognome" required><br>
+        Telefono<input type="text" name="telefono" required><br>
+        Città<input type="text" name="citta" required><br>
+        Comune  <select id="comuni" required>
                     <?php
                     
                         require_once('ConnessionDB.php');
@@ -14,13 +14,14 @@
                         while($row=mysqli_fetch_array($result)){
                             echo "<option name='comune' value='".$row['IdComune']."'>".$row['Comune']."</option>";
                         } 
+                        mysqli_close($conn);
                         
                     ?>
                 </select>
         
-        Via<input type="text" name="via"><br>
-        Civico<input type="text" name="civico"><br>
-        Username<input type="text" name="username"><br>
+        Via<input type="text" name="via" required><br>
+        Civico<input type="text" name="civico" required><br>
+        Username<input type="text" name="username" required><br>
         <!--
 
         Numero Carta di Credito<input type="text" name="numcred"><br>
@@ -28,8 +29,8 @@
         <option value="visa" name="cartadicredito">Visa</option>
         <option value="maestro" name="cartadicredito">Maestro</option>
         </select>-->
-        Mail<input type="text" name="mail"><br>
-        Password<input type="password" name="password" autocomplete="on"><br>
+        Mail<input type="text" name="mail" required><br>
+        Password<input type="password" name="password" autocomplete="on" required><br>
        <input type="submit" name="invio">
     </form>
 
@@ -53,6 +54,8 @@
         }
 
         function controllousername($username){
+            
+            require_once('ConnessionDB.php');
 
             $sql="SELECT UsernameCliente FROM clienti"; 
             $result=mysqli_query($conn,$sql);
@@ -64,39 +67,36 @@
                     return false;
                 }
             } 
+            
+            mysqli_close($conn);
 
         }
 
         if (isset($_POST["invio"])){
-            if (!empty($_POST["nome"])&&!empty($_POST["cognome"])&&!empty($_POST["telefono"])&&!empty($_POST["citta"])&&!empty($_POST["comune"])&&!empty($_POST["via"])&&!empty($_POST["civico"])&&!empty($_POST["username"])){ 
-                if (!empty($_POST["mail"])||!empty($_POST["password"])){
-                    $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
-                    $controllo = controllamail($mail);
+                
+            $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
+            $controllo = controllamail($mail);
+            if ($controllo==true){
+                
+                $controllo = controllonumero($_POST["telefono"]);
+                if ($controllo==true){
+                    
+                    $controllo = controllousername($_POST["username"]);
                     if ($controllo==true){
-                        
-                        $controllo = controllonumero($_POST["telefono"]);
-                        if ($controllo==true){
-                            
-                            $controllo = controllousername($_POST["username"]);
-                            if ($controllo==true){
-                                //reindirizzamento pagina per inserire dati carta di credito
-                            }
-                            else{
-
-                            }
-                        }
-                        else{
-                        }
-
+                        //reindirizzamento pagina per inserire dati carta di credito
                     }
                     else{
 
                     }
                 }
+                else{
+                }
+
             }
             else{
-                echo "<h1>Riempire tutti i campi</h1>";
+
             }
+                
         }
     ?>
 </html>
