@@ -1,4 +1,5 @@
 <html>
+    <?php require_once('header.php') ?>
     <form method="POST">
         Nome<input type="text" name="nome" required><br>
         Cognome<input type="text" name="cognome" required><br>
@@ -9,10 +10,12 @@
                     
                         require_once('ConnessionDB.php');
 
-                        $sql="SELECT IdComune,Comune FROM comuni"; 
-                        $result=mysqli_query($conn,$sql);
+                        $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
+                        $result=mysqli_query($conn,$sql); ?>
+                        <option name="comune" value="12">--Seleziona Città--</option>
+                        <?php 
                         while($row=mysqli_fetch_array($result)){
-                            echo "<option name='comune' value='".$row['IdComune']."'>".$row['Comune']."</option>";
+                            echo "<option name='comune' value='".$row['IdComune'] ."'>".$row['CAP'].$row['Comune']."</option>";
                         } 
                         mysqli_close($conn);
                         
@@ -54,9 +57,13 @@
         }
 
         function controllousername($username){
+<<<<<<< Updated upstream
             
             require_once('ConnessionDB.php');
 
+=======
+            require_once('ConnessionDB.php');
+>>>>>>> Stashed changes
             $sql="SELECT UsernameCliente FROM clienti"; 
             $result=mysqli_query($conn,$sql);
             while($row=mysqli_fetch_array($result)){

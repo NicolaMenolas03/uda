@@ -1,3 +1,46 @@
-.i{
-    color: white;
+/* The container must be positioned relative: */
+
+.custo-select {
+  box-shadow: none;
+  background: var(--project-bg);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: calc(3.25rem + 2px);
+  padding:0.3em 1em;;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-clip: padding-box;
+  border-radius: 0.25rem;
+  outline:none;
+  border-width: 0;
+  margin:0;
+  align-items:center;
+  -webkit-appearance: none;
+  background: url(../images/arrow.svg) no-repeat right var(--project-bg);
+  
+}
+
+.custo-select::before {
+  box-shadow: none;
+  background: var(--project-bg);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: calc(3.25rem + 2px);
+  padding:0.3em 1em;;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-clip: padding-box;
+  border-radius: 0.25rem;
+  outline:none;
+  border-width: 0;
+  margin:0;
+  align-items:center;
+  
+  
 }
