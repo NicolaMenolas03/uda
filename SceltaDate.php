@@ -8,8 +8,17 @@
 
 <?php
 session_start();
-$Appartamenti = $_SESSION['ok'];
-echo "Descrizione: " . $Appartamenti . "<br>";
+if(!($_SESSION['Appartamenti']))
+{
+    $Appartamenti = $_POST['Appartamenti'];
+    $_SESSION['Appartamenti']=$Appartamenti;
+}
+else
+{
+    $Appartamenti = $_SESSION['Appartamenti'];
+}
+
+
 
 if(isset($_POST['submit']))
 {
@@ -40,16 +49,18 @@ if (mysqli_num_rows($result) > 0) {
     $i=0;
     while($row = mysqli_fetch_assoc($result)) 
     {
-        if($row['Descrizione'] == $Appartamenti)
+        if($row['IdAppartamento'] == $Appartamenti)
         {
             $Prezzo = $row['Prezzo'];
             $IDAPP = $row['IdAppartamento'];
+            $Descrizione = $row['Descrizione'];
         }
         
     }
 } else {
     echo "0 results";
 }
+echo "Descrizione: " . $Descrizione . "<br>";
 $PrezzoF = $Prezzo * $days_between;
 
 echo "<br><br>Il prezzo e': " . $PrezzoF . "<br>";

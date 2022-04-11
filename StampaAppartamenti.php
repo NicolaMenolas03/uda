@@ -24,6 +24,7 @@ error_reporting(0);
         // output data of each row
         $i=0;
         while($row = mysqli_fetch_assoc($result)) {
+            $IdAppartamento[$i] = $row['IdAppartamento'];
             $Nome[$i] = $row['Descrizione'];
             $Prezzo[$i] = $row['Prezzo'];
             $Via[$i] = $row['Toponimo'] . ": " . $row['Nomevia'];
@@ -40,9 +41,9 @@ error_reporting(0);
         
         for($x=-1; $x<$i; $i--)
         {
-            $_SESSION['ok'] = $Nome[$i];
+            $z = $IdAppartamento[$i];
             echo"    <form action='SceltaDate.php' method='POST'>
-            ". "<br><hr><br><b>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$Nome[$i]'>";
+            ". "<br><hr><br><b>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z'>";
         }
         echo "<hr>";
         echo "<br><br><input type='submit' value='avanti'>
