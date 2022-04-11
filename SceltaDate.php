@@ -8,14 +8,14 @@
 
 <?php
 session_start();
-if(!($_SESSION['Appartamenti']))
+if(!(isset($_POST['Appartamenti'])))
 {
-    $Appartamenti = $_POST['Appartamenti'];
-    $_SESSION['Appartamenti']=$Appartamenti;
+    $Appartamenti = $_SESSION['Appartamenti'];
 }
 else
 {
-    $Appartamenti = $_SESSION['Appartamenti'];
+    $Appartamenti = $_POST['Appartamenti'];
+    $_SESSION['Appartamenti'] = $Appartamenti;
 }
 
 
@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
         echo "Le date sono: " . $days_between . "<br>";
     }
     else{
-        echo "Errore nelle date";
+        echo "Errore nelle date<br>";
         $days_between = 0;
     }
 }
