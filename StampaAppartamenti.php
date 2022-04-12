@@ -9,6 +9,10 @@ error_reporting(0);
     <input type='submit' name='submit' value='Cerca'>
     </form>";
 
+    $start = strtotime($_SESSION['checkin']);
+    $end = strtotime($_SESSION['checkout']);
+    $days_between = ceil(abs($end - $start) / 86400);
+    echo "Le date sono: " . $days_between . "<br>";
     if(isset($_POST['search']))
     {
         $SH = $_POST['search'];
@@ -28,11 +32,16 @@ error_reporting(0);
             $Nome[$p] = $row['Descrizione'];
             $Prezzo[$p] = $row['Prezzo'];
             $Via[$p] = $row['Toponimo'] . ": " . $row['Nomevia'];
+            $PrezzoF[$p] = $Prezzo[$p] * $days_between;
             $p++;
         }
     } else {
         echo "0 results";
     }
+
+   
+    
+
 
     $sql = "SELECT * FROM `affitti`";
     $result = mysqli_query($conn, $sql);
@@ -77,12 +86,12 @@ error_reporting(0);
             if($t==true)
             {
                 echo"    <form action='paga.php' method='POST'>
-                ". "<br><hr><br><b><b><font color='green'>LIBERO</font></b> <br>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z'>";
+                ". "<br><hr><br><b><b><font color='green'>LIBERO</font></b> <br>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>Prezzo totale:" . $PrezzoF[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z'>";
             }
             else
             {
                 echo"    <form action='paga.php' method='POST'>
-                ". "<br><hr><br><b><b><font color='red'>OCCUPATO</font></b> <br>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z' disabled>";
+                ". "<br><hr><br><b><b><font color='red'>OCCUPATO</font></b> <br>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>Prezzo totale:" . $PrezzoF[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z' disabled>";
             }
         }
         echo "<hr>";
