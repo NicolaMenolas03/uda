@@ -1,9 +1,9 @@
-
+<h1>Inserire luogo e date di prenotazione</h1>
 <form action='SceltaDate.php' method='POST'>
-<input type='text' name='comune'>
-<input type='date' name='checkin'>
-<input type='date' name='checkout'>
-<input type='submit' name='submit' value='Conferma date'>
+<input type='text' name='comune' required>
+<input type='date' name='checkin' required>
+<input type='date' name='checkout' required>
+<input type='submit' name='submit' value='Avanti'>
 </form>
 
 
@@ -24,10 +24,10 @@ if(isset($_POST['submit']))
     
     if($start<$end && $startcontrol > $oggi)
     {
-        echo "ok";
         $_SESSION['checkin']=$_POST['checkin'];
         $_SESSION['checkout']=$_POST['checkout'];
         $_SESSION['search']=$_POST['comune'];
+        echo "<script>window.location.href='StampaAppartamenti.php';</script>";
     }
     else{
         echo "Errore nelle date<br>";
@@ -40,9 +40,6 @@ else
     $_SESSION['checkin']="";
     $_SESSION['checkout']="";
 }
-echo "<br><br><br>";
 
-
-echo "<button><a href='StampaAppartamenti.php'>Avanti</a></button>";
 
 ?>
