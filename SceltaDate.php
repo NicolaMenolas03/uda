@@ -1,5 +1,6 @@
 
 <form action='SceltaDate.php' method='POST'>
+<input type='text' name='comune'>
 <input type='date' name='checkin'>
 <input type='date' name='checkout'>
 <input type='submit' name='submit' value='Conferma date'>
@@ -26,11 +27,12 @@ if(isset($_POST['submit']))
         echo "ok";
         $_SESSION['checkin']=$_POST['checkin'];
         $_SESSION['checkout']=$_POST['checkout'];
+        $_SESSION['search']=$_POST['comune'];
     }
     else{
         echo "Errore nelle date<br>";
         $_SESSION['checkin']="";
-        $_SESSION['checkout']="";
+        $_SESSION['checkout']="";      
     }
 }
 else
