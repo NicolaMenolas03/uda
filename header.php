@@ -27,7 +27,7 @@
      <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
             <box-icon name='bed' type='solid' color='#ffffff' ></box-icon>
               Bed&Brekko
             </a>
@@ -46,7 +46,7 @@
                         <a href="#project" class="nav-link contact">Affitta</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#footer" class="nav-link smoothScroll">Contact</a>
+                        <a href="#footer" class="nav-link smoothScroll">Contattaci</a>
                     </li>
                 </ul>
             </div>

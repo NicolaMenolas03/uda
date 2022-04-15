@@ -12,7 +12,7 @@
 
                                    <h1 class="text-white" data-aos="fade-up">I tuoi alloggi da sogno</h1>
 
-                                   <a href="registrati.php" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Prenota ora</a>
+                                   <a href="index_copy.php" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Prenota ora</a>
                                    <a href="contact.html" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Affitta ora</a>
                               </div>
                         </div>
