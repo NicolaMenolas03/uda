@@ -38,7 +38,7 @@ error_reporting(0);
     } else {
         echo "0 results";
     }
-
+    $_SESSION['days_between'] = $days_between;
    
     
 

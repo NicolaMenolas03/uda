@@ -3,13 +3,25 @@ session_start();
 require_once('ConnessionDB.php');
 $checkin = $_SESSION['checkin'];
 $checkout = $_SESSION['checkout'];
-$prezzo = $_SESSION['Prezzo'];
 $idappartamenti = $_POST['Appartamenti'];
 $IDCLIENTE = 'CaccaPupu';
 
+$days_between = $_SESSION['days_between'];
+$sql = "SELECT * FROM appartamenti WHERE IdAppartamento=$idappartamenti";
+$result = mysqli_query($conn, $sql);
 
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    $p=0;
+    while($row = mysqli_fetch_assoc($result)) {
+        $prezzo = $row['Prezzo'];     
+    }
+} else {
+    echo "0 results";
+}
+$PrezzoF = $prezzo * $days_between;
 $sql = "INSERT INTO `affitti`(`Checkin`, `Checkout`, `Import`, `idAppartamento`, `usernameCliente`) 
-VALUES ('$checkin','$checkout',$prezzo,$idappartamenti,'$IDCLIENTE')";
+VALUES ('$checkin','$checkout',$PrezzoF,$idappartamenti,'$IDCLIENTE')";
  
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
