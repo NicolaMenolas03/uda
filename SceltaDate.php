@@ -1,40 +1,58 @@
 <?php require_once('header.php');?>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 <body>
-<div class="container">
+    
+<div class="container" style="padding: 0 0 15 0; width:900px;" data-aos="fade-up" data-aos-delay="30"><br>
+    <form action='SceltaDate.php' method='POST' class="row g-3 needs-validation" novalidate>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom03" class="form-label">Città</label>
+            <input type="text" class="form-control" id="validationCustom03"  placeholder="Dove vuoi andare?" name="comune" required>
+                <div class="invalid-feedback">
+                    Inserisci una destinazione per iniziare la ricerca
+                </div>
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom01" class="form-label">Check-in</label>
+            <input type="date" class="form-control" id="validationCustom01" value="Mark" name="checkin" required>
+                <div class="invalid-feedback">
+                    Inserire una data valida
+                </div>
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom02" class="form-label">Check-out</label>
+            <input type="date" class="form-control" id="validationCustom02" value="Otto" name="checkout" required>
+                <div class="invalid-feedback">
+                    Inserire una data valida
+                </div>
+        </div>
+        <div class="col-md-1">
+            <label for="validationCustom04" class="form-label" style="color:transparent;">.</label>
+            <button class="btn btn-primary" id="validationCustom04" name="submit" type="submit">Cerca</button>
+        </div>
+    </form>
+</div>
 
-        <form action='SceltaDate.php' method='POST' class="row g-3 needs-validation">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-2">
-                <label for="validationCustom03" class="form-label">Città</label>
-                <input type="text" class="form-control" id="validationCustom03"  placeholder="Città" name="comune" required>
-                    <div class="invalid-feedback">
-                        Inserire una città valida
-                    </div>
-            </div>
-            <div class="col-md-2">
-                <label for="validationCustom01" class="form-label">Check-in</label>
-                <input type="date" class="form-control" id="validationCustom01" value="Mark" name="checkin" required>
-                    <div class="invalid-feedback">
-                        Inserire una data valida
-                    </div>
-            </div>
-            <div class="col-md-2">
-                <label for="validationCustom02" class="form-label">Check-out</label>
-                <input type="date" class="form-control" id="validationCustom02" value="Otto" name="checkout" required>
-                    <div class="invalid-feedback">
-                        Inserire una data valida
-                    </div>
-            </div>
-            <div class="col-md-1">
-                <label for="validationCustom04" class="form-label">.</label>
-                <button class="btn btn-primary" id="validationCustom01" name="submit" type="submit">Cerca</button>
-            </div>
-        </form>
+
+<!-- Modal -->
+<div class="modal fade" id="gallery-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <img src="img/1.jpg" class="modal-img" alt="modal img">
+      </div>
     </div>
+  </div>
+</div>
 
 <?php
 session_start();
@@ -61,7 +79,7 @@ if(isset($_POST['submit']))
         echo "<script>window.location.href='StampaAppartamenti.php';</script>";
     }
     else{
-        echo "Errore nelle date<br>";
+        
         $_SESSION['checkin']="";
         $_SESSION['checkout']="";      
     }
@@ -72,24 +90,7 @@ else
     $_SESSION['checkout']="";
 }
 ?>
-    <!--<div class="container">
-        <div class="row">
-            <form action="SceltaDate.php" method='POST'>
-                <div class="col-lg-6 col-12">
-                    <input type='text' name='comune' required>
-                </div>
-                <div class="col-lg-6 col-8">
-                <input type='date' name='checkin' required>
-                </div>
-                <div class="col-lg-6 col-12">
-                <input type='date' name='checkout' required>
-                </div>
-                <div class="col-lg-6 col-12">
-                <input type='submit' name='submit' value='Avanti'>
-                </div>
-                </form>
-        </div>
-    </div>-->
+
 
     
     

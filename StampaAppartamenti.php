@@ -1,4 +1,6 @@
-<?php
+<?php require_once('header.php');
+
+
 session_start();
 error_reporting(0);
     require_once('ConnessionDB.php');
@@ -129,4 +131,6 @@ $t=true;
             $days_between = 0;
         }
         */
+
+    require_once("footer.php");
 ?>
