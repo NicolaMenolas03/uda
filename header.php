@@ -46,7 +46,7 @@
                         <a href="#project" class="nav-link contact">Affitta</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#footer" class="nav-link smoothScroll">Contact</a>
+                        <a href="#footer" class="nav-link smoothScroll">Contattaci</a>
                     </li>
                 </ul>
             </div>

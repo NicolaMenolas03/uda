@@ -9,7 +9,7 @@
                       <form action="#" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
                         <div class="row">
                           <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="nome" placeholder="Name">
+                            <input type="text" class="form-control" name="nome" placeholder="Nome">
                           </div>
                           <div class="col-lg-6 col-12">
                             <input type="text" class="form-control" name="cognome" placeholder="Cognome">
@@ -20,24 +20,24 @@
                           <div class="col-lg-6 col-12">
                             <input type="text" class="form-control" name="citta" placeholder="Città">
                           </div>
-                          <div class="col-lg-6 col-12">
-                          <select id="comuni" class="custo-select">
-                    <?php
-                    
-                        require_once('ConnessionDB.php');
+                          <div class="col-lg-6 col-12" style="margin-top:11px;">
+                            <select id="comuni" class="custo-select">
+                              <?php
+                              
+                                  require_once('ConnessionDB.php');
 
-                        $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
-                        $result=mysqli_query($conn,$sql); ?>
-                        <option name="comune" value="-1">-Seleziona Comune-</option>
-                        <?php
-                        while($row=mysqli_fetch_array($result)){
-                            echo "<option name='comune' value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
-                        } 
-                        
-                    ?>
-                </select>
+                                  $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
+                                  $result=mysqli_query($conn,$sql); ?>
+                                  <option name="comune" value="-1">-Seleziona Comune-</option>
+                                  <?php
+                                  while($row=mysqli_fetch_array($result)){
+                                      echo "<option name='comune' value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
+                                  } 
+                                  
+                              ?>
+                            </select>
                         </div>
-                        <div class="col-lg-6 col-12" style="display:flex;justify-content: space-between">
+                        <div class="col-lg-6 col-12" style="display:flex;justify-content: space-between; margin-top:-3px;">
                             <input type="text" class="form-control" name="via" placeholder="Via" style="width:80%">   
                             <input type="text" class="form-control" name="civico" placeholder="N°" style="width:15%">
                           </div>

@@ -1,11 +1,13 @@
-<?php
+<?php require_once('header.php');
+
+
 session_start();
 error_reporting(0);
     require_once('ConnessionDB.php');
-
+    $lpl = $_SESSION['search'];
     echo "
     <form action='StampaAppartamenti.php' method='POST'>
-    <input type='text' name='search' placeholder='es. Bari'>
+    <input type='text' name='search' placeholder='$lpl'>
     <input type='submit' name='submit' value='Cerca'>
     </form>";
 
@@ -15,7 +17,14 @@ error_reporting(0);
     echo "Le date sono: " . $days_between . "<br>";
     if(isset($_POST['search']))
     {
+        $_SESSION['search'] = $_POST['search'];
         $SH = $_POST['search'];
+        $sql = "SELECT * FROM appartamenti WHERE Toponimo LIKE '$SH%'";
+        echo "<script>window.location.href='StampaAppartamenti.php';</script>";
+    }
+    else if($_SESSION['search'])
+    {
+        $SH = $_SESSION['search'];
         $sql = "SELECT * FROM appartamenti WHERE Toponimo LIKE '$SH%'";
     }
     else
@@ -38,7 +47,7 @@ error_reporting(0);
     } else {
         echo "0 results";
     }
-
+    $_SESSION['days_between'] = $days_between;
    
     
 
@@ -122,4 +131,6 @@ $t=true;
             $days_between = 0;
         }
         */
+
+    require_once("footer.php");
 ?>
