@@ -6,8 +6,6 @@
 
      <div class="col-lg-8 mx-auto col-md-10 col-12">
                     
-                    <!-- Follow https://templatemo.com/contact page to setup your own contact form -->
-                    
                       <form action="#" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
                         <div class="row">
                           <div class="col-lg-6 col-12">
