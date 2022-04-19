@@ -1,5 +1,8 @@
 <html>
-    <?php require_once('header.php') ?>
+    <?php
+        require_once('header.php'); 
+        require_once('ConnessionDB.php');
+    ?>
     <form method="POST">
         Nome<input type="text" name="nome" required><br>
         Cognome<input type="text" name="cognome" required><br>
@@ -8,7 +11,6 @@
         Comune  <select id="comuni" required>
                     <?php
                     
-                        require_once('ConnessionDB.php');
 
                         $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
                         $result=mysqli_query($conn,$sql); ?>
@@ -58,18 +60,18 @@
 
         function controllousername($username){
             
-            require_once('ConnessionDB.php');
-
             $sql="SELECT UsernameCliente FROM clienti"; 
             $result=mysqli_query($conn,$sql);
-            while($row=mysqli_fetch_array($result)){
-                if ($username!=$row["UsernameCliente"]){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            } 
+            if (mysqli_num_rows($result) > 0){
+                while($row=mysqli_fetch_array($result)){
+                    if ($username!=$row["UsernameCliente"]){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                } 
+            }
             
             mysqli_close($conn);
 
@@ -86,7 +88,7 @@
                     
                     $controllo = controllousername($_POST["username"]);
                     if ($controllo==true){
-                        //reindirizzamento pagina per inserire dati carta di credito
+                        echo "<script>window.location.href='registraticarta.php';</script>";
                     }
                     else{
 

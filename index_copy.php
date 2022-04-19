@@ -6,7 +6,7 @@
 
      <div class="col-lg-8 mx-auto col-md-10 col-12">
                     
-                      <form action="#" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
+                      <form method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
                         <div class="row">
                           <div class="col-lg-6 col-12">
                             <input type="text" class="form-control" name="nome" placeholder="Nome">
@@ -62,6 +62,72 @@
                       </form>
                     </div>
 
+                  <?php
+                      function controllamail($mail){
+                          if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                              return true;
+                          }
+                          else {
+                              return false;
+                          }
+                      }
+
+                      function controllonumero($numero){
+                          if (is_numeric($_POST["telefono"])&&$_POST["telefono"]>3000000000){
+                              return true;
+                          }
+                          else{
+                              return false;
+                          }
+                      }
+
+                      function controllousername($username){
+                          
+                          $sql="SELECT UsernameCliente FROM clienti"; 
+                          $result=mysqli_query($conn,$sql);
+                          if (mysqli_num_rows($result) > 0){
+                              while($row=mysqli_fetch_array($result)){
+                                  if ($username!=$row["UsernameCliente"]){
+                                      return true;
+                                  }
+                                  else{
+                                      return false;
+                                  }
+                              } 
+                          }
+                          
+                          mysqli_close($conn);
+
+                      }
+
+                      if (isset($_POST["invio"])){
+                              
+                          $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
+                          $controllo = controllamail($mail);
+                          if ($controllo==true){
+                              
+                              $controllo = controllonumero($_POST["telefono"]);
+                              if ($controllo==true){
+                                  
+                                  $controllo = controllousername($_POST["username"]);
+                                  if ($controllo==true){
+                                      echo "<script>window.location.href='registraticarta.php';</script>";
+                                  }
+                                  else{
+                                    header("Refresh: 2");
+                                  }
+                              }
+                              else{
+                                header("Refresh: 2");
+                              }
+
+                          }
+                          else{
+                            header("Refresh: 2");
+                          }
+                              
+                      }
+                  ?>
 
      <!-- ABOUT -->
      <section class="about section-padding pb-0" id="about">
