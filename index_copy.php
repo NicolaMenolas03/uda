@@ -88,7 +88,7 @@
                           }
                       }
 
-                      function controllousername($username){
+                      function controllousername($username, $conn){
                         
                           $sql="SELECT UsernameCliente FROM clienti"; 
                           $result=mysqli_query($conn,$sql);
@@ -120,7 +120,7 @@
                               $controllo = controllonumero($_POST["telefono"]);
                               if ($controllo==true){
                                   
-                                  $controllo = controllousername($_POST["username"]);
+                                  $controllo = controllousername($_POST["username"], $conn);
                                   if ($controllo==true){
 
                                    $sql = "INSERT INTO `clienti`(`UsernameCliente`, `Nome`, `Cognome`, `Telefono`, `Email`, `Password`, `Toponimo`, `Nomevia`, `Civico`, `idComuneCli`, `NumCreditCard`, `TipoCreditCard`) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
