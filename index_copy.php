@@ -145,8 +145,7 @@
                           else{
                             header("Refresh: 2");
                           }
-                              
-                      }
+                         
                   ?>
 
      <!-- ABOUT -->
@@ -159,8 +158,7 @@
 
                               <h2 class="mb-4" data-aos="fade-up">Scegli un bed e breakfast <strong>senza impegno e senza sforzo</strong> a Bari</h2>
 
-                              <p class="mb-0" data-aos="fade-up">Total 5 HTML pages are included in this template from TemplateMo website. Please check 2 <a href="blog.html">blog</a> pages, <a href="project-detail.html">project</a> page, and <a href="contact.html">contact</a> page. 
-                              <br><br>You are <strong>allowed</strong> to use this template for commercial or non-commercial purpose. You are NOT allowed to redistribute the template ZIP file on template collection websites.</p>
+                              <p class="mb-0" data-aos="fade-up">A Bari siamo conosciuti per essere i Bed & Breakfast più affidabili, sicuri e smart della città. 
                          </div>
 
                          <div class="about-image" data-aos="fade-up" data-aos-delay="200">
