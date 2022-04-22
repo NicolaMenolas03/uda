@@ -15,7 +15,7 @@
 </style>
 <?php require_once('header.php');
 session_start();
-
+error_reporting(0);
 //GESTIONE IMMAGINI
 ?>
 <a href="InserisciCasa.php">&#8592;</a>
@@ -119,54 +119,49 @@ session_start();
                     if($checkin[$z][$y]<=$_SESSION['checkin'] && $checkout[$z][$y]>=$_SESSION['checkin'] || $checkout[$z][$y]>=$_SESSION['checkout'] && $checkin[$z][$y]<=$_SESSION['checkout'])
                     {
                         $t = false;
+                        $oc = $checkin[$z][$y]." AL ".$checkout[$z][$y];
                     }        
                 }
             }
             
             if($t==true)
-            {
-                echo"    <form action='paga.php' method='POST'>
-                ". "<br><hr><br><b><b><font color='green'>LIBERO</font></b> <br>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>Prezzo totale:" . $PrezzoF[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z'>";
+            {?>
+                <form action='StampaAppartamenti.php' method='POST'>
+                <br><hr><br><b><font color='green'>LIBERO</font></b> <br><?php echo $Nome[$i] ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' name='<?php echo $z ?>' value='Apri'>
+                </form>
+                <?php
             }
             else
-            {
-                echo"    <form action='paga.php' method='POST'>
-                ". "<br><hr><br><b><b><font color='red'>OCCUPATO</font></b> <br>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>Prezzo totale:" . $PrezzoF[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z' disabled>";
+            {?>
+                <form action='StampaAppartamenti.php' method='POST'>
+                <br><hr><br><b><font color='red'>OCCUPATO DAL <?php echo $oc ?></font></b> <br><?php echo $Nome[$i] ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' name='<?php echo $z ?>' value='Apri' disabled>
+                </form>
+                <?php
             }
+
             ?>
+            <!-- IMMAGINE -->
+            
             <div class="alb">
              	<img src="uploads/<?=$link[$z]?>">
             </div>
+            <!-- FINE IMMAGINE -->
             <?php
+            
         }
-        echo "<hr>";
-        echo "<br><br><input type='submit' value='avanti'>
-        </form>";
-    
-/*
-$t=true;
-        $x = count($checkin)-1;
-        
-        for($i=-1; $i<$x; $x--)
-        {    
-            if($checkin[$x]<=$_SESSION['checkin'] && $checkout[$x]>=$_SESSION['checkin'] || $checkout[$x]>=$_SESSION['checkout'] && $checkin[$x]<=$_SESSION['checkout'])
+
+        for($i=1; $i<($z+1); $i++)
+        {
+            if(isset($_POST[$i]))
             {
-                $t = false;
-            }        
+                $_SESSION['Appartamento']=$i;
+                $_SESSION['PrezzoFinAppartamento']=$PrezzoF[$i];
+                echo "<script>window.location.href='index_copy.php';</script>";
+            }
         }
-        if($t==true)
-        {
-            $days_between = ceil(abs($end - $start) / 86400);
-            echo "Le date sono: " . $days_between . "<br>";
-        }
-        else
-        {
-            echo"<b>
-                    <font color='red'>L?APPARTAMENTO E' GIA' OCCUPATO<br></font>
-               </b>";
-            $days_between = 0;
-        }
-        */
+
+        echo "<hr>";
+
 
     require_once("footer.php");
 ?>
