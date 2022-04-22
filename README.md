@@ -4,6 +4,6 @@ PER ACCEDERE AL DB E MODIFICARE I VALORI A PREFERENZA:
 -inserire Email Address: gabrieleamoruso03@gmail.com
 -inserire Password: Gabry1310
 -Cliccare a sinistra in alto su personal space
--Selezionare sotto Personal Space Il DB chiamato Amoruso123
+-Selezionare sotto Personal Space Il DB chiamato UDA
 -Cliccare in alto a destra su PHPMyAdmin
--Modificare il DB chiamato bkd8ibdfha5v4oumdnwg a piacimento
+-Modificare il DB chiamato brx553jfhvrjufqsjwzs a piacimento
