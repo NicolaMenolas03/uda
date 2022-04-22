@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
+  //error_reporting(0);
   require_once('header.php'); 
-
   require_once('ConnessionDB.php');
 ?>
 
@@ -25,16 +25,16 @@
                             <input type="text" class="form-control" name="citta" placeholder="Città" required>
                           </div>
                           <div class="col-lg-6 col-12" style="margin-top:11px;">
-                            <select id="comuni" class="custo-select" required>
+                            <select name="comune" id="comuni" class="custo-select" required>
                               <?php
                               
 
                                   $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
                                   $result=mysqli_query($conn,$sql); ?>
-                                  <option name="comune">-Seleziona Comune-</option>
+                                  <option>-Seleziona Comune-</option>
                                   <?php
                                   while($row=mysqli_fetch_array($result)){
-                                      echo "<option name='comune' value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
+                                      echo "<option value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
                                   } 
 
                               ?>
@@ -54,10 +54,10 @@
                             <input type="password" class="form-control" name="password" placeholder="Password" required >
                           </div>
                           <div class="col-lg-6 col-12">
-                            <input type="text" name="numcred" minlength="16" maxlength="16" min="0" max="9999999999999999" required><br>
+                            <input type="text" name="numcred" minlength="16" maxlength="16" min="1111111111111111" max="9999999999999999" required><br>
                             Scegli tipo di carta:<select name="carta" id="carta" required>
-                                <option value="visa" name="cartadicredito">Visa</option>
-                                <option value="maestro" name="cartadicredito">Maestro/MasterCard</option>
+                                <option value="visa">Visa</option>
+                                <option value="maestro">Maestro/MasterCard</option>
                             </select>
                             </div>
                           
@@ -90,8 +90,6 @@
 
                       function controllousername($username){
                         
-                        
-                          require_once('ConnessionDB.php');
                           $sql="SELECT UsernameCliente FROM clienti"; 
                           $result=mysqli_query($conn,$sql);
                           $x=0;
@@ -113,7 +111,8 @@
                       }
 
                       if (isset($_POST["submit"])){
-                              
+                        
+
                           $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
                           
                           $controllo = controllamail($mail);
@@ -123,10 +122,12 @@
                                   
                                   $controllo = controllousername($_POST["username"]);
                                   if ($controllo==true){
-                                    
-                                   echo "<script>alert('lello')</script>";
-                                   // $sql = "INSERT INTO `clienti`(`UsernameCliente`, `Nome`, `Cognome`, `Telefono`, `Email`, `Password`, `Toponimo`, `Nomevia`, `Civico`, `idComuneCli`, `NumCreditCard`, `TipoCreditCard`) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['comune']."','".$mail."' )";
-                                    //if ($conn->query($sql) === TRUE) {}
+
+                                   $sql = "INSERT INTO `clienti`(`UsernameCliente`, `Nome`, `Cognome`, `Telefono`, `Email`, `Password`, `Toponimo`, `Nomevia`, `Civico`, `idComuneCli`, `NumCreditCard`, `TipoCreditCard`) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
+
+                                   if ($conn->query($sql) === TRUE) {
+                                    echo "Modifica effettuata";
+                                   }
                                   }
                                   else{
                                     header("Refresh: 2");
