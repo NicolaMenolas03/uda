@@ -10,64 +10,67 @@
 
      <div class="col-lg-8 mx-auto col-md-10 col-12">
                     
-                      <form method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
-                        <div class="row">
-                          <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="nome" placeholder="Nome" required>
-                          </div>
-                          <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="cognome" placeholder="Cognome" required>
-                          </div>
-                          <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono" required>
-                          </div>
-                          <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="citta" placeholder="Città" required>
-                          </div>
-                          <div class="col-lg-6 col-12" style="margin-top:11px;">
-                            <select name="comune" id="comuni" class="custo-select" required>
-                              <?php
-                              
+      <form method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <input type="text" class="form-control" name="nome" placeholder="Nome" required>
+          </div>
+          <div class="col-lg-6 col-12">
+            <input type="text" class="form-control" name="cognome" placeholder="Cognome" required>
+          </div>
+          <div class="col-lg-6 col-12">
+            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono" required>
+          </div>
+          <div class="col-lg-6 col-12">
+            <input type="text" class="form-control" name="citta" placeholder="Città" required>
+          </div>
+          <div class="col-lg-6 col-12" style="margin-top:11px;">
+            <select name="comune" id="comuni" class="custo-select" required>
+              <?php
+              
 
-                                  $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
-                                  $result=mysqli_query($conn,$sql); ?>
-                                  <option>-Seleziona Comune-</option>
-                                  <?php
-                                  while($row=mysqli_fetch_array($result)){
-                                      echo "<option value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
-                                  } 
+                  $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
+                  $result=mysqli_query($conn,$sql); ?>
+                  <option>-Seleziona Comune-</option>
+                  <?php
+                  while($row=mysqli_fetch_array($result)){
+                      echo "<option value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
+                  } 
 
-                              ?>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 col-12" style="display:flex;justify-content: space-between; margin-top:-3px;">
-                            <input type="text" class="form-control" name="via" placeholder="Via" style="width:80%" required>   
-                            <input type="text" class="form-control" name="civico" placeholder="N°" style="width:15%" required-+>
-                          </div>
-                          <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="username" placeholder="Username" required>
-                          </div>
-                          <div class="col-lg-6 col-12">
-                            <input type="mail" class="form-control" name="mail" placeholder="E-mail" required>
-                    </div>
-                          <div class="col-lg-6 col-12">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required >
-                          </div>
-                          <div class="col-lg-6 col-12">
-                            <input type="text" name="numcred" minlength="16" maxlength="16" min="1111111111111111" max="9999999999999999" required><br>
-                            Scegli tipo di carta:<select name="carta" id="carta" required>
-                                <option value="visa">Visa</option>
-                                <option value="maestro">Maestro/MasterCard</option>
-                            </select>
-                            </div>
-                          
-                          <div class="col-lg-5 mx-auto col-7">
-                            <button type="submit" class="form-control" id="submit-button" name="submit">Invio</button>
-                          </div>
-                        </div>
+              ?>
+            </select>
+        </div>
+        <div class="col-lg-6 col-12" style="display:flex;justify-content: space-between; margin-top:-3px;">
+            <input type="text" class="form-control" name="via" placeholder="Via" style="width:80%" required>   
+            <input type="text" class="form-control" name="civico" placeholder="N°" style="width:15%" required-+>
+          </div>
+          <div class="col-lg-6 col-12">
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
+          </div>
+          <div class="col-lg-6 col-12">
+            <input type="mail" class="form-control" name="mail" placeholder="E-mail" required>
+          </div>
+          <div class="col-lg-6 col-12">
+            <input type="password" class="form-control" name="password" placeholder="Password" required >
+          </div>
+          <div class="col-lg-6 col-12">
+            <input type="text" class="form-control"   name="numcred" minlength="16" maxlength="16" min="1111111111111111" max="9999999999999999" placeholder="Numero della Carta" required><br>
+          </div>
 
-                      </form>
-                    </div>
+          <div class="col-lg-6 col-12">
+            <select name="carta" class="custo-select" id="carta" required>
+                <option>-Scegli tipo carta-</option>
+                <option value="visa">Visa</option>
+                <option value="maestro">Maestro/MasterCard</option>
+            </select>
+          </div>
+          <div class="col-lg-5 mx-auto col-7">
+            <button type="submit" class="form-control" id="submit-button" name="submit">Invio</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
 
                   <?php
                       function controllamail($mail){
@@ -88,7 +91,7 @@
                           }
                       }
 
-                      function controllousername($username){
+                      function controllousername($username,$conn){
                         
                           $sql="SELECT UsernameCliente FROM clienti"; 
                           $result=mysqli_query($conn,$sql);
@@ -120,7 +123,7 @@
                               $controllo = controllonumero($_POST["telefono"]);
                               if ($controllo==true){
                                   
-                                  $controllo = controllousername($_POST["username"]);
+                                  $controllo = controllousername($_POST["username"],$conn);
                                   if ($controllo==true){
 
                                    $sql = "INSERT INTO `clienti`(`UsernameCliente`, `Nome`, `Cognome`, `Telefono`, `Email`, `Password`, `Toponimo`, `Nomevia`, `Civico`, `idComuneCli`, `NumCreditCard`, `TipoCreditCard`) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
@@ -153,7 +156,7 @@
                     <div class="col-lg-7 mx-auto col-md-10 col-12">
                          <div class="about-info">
 
-                              <h2 class="mb-4" data-aos="fade-up">the best <strong>Digital Marketing agency</strong> in Rio de Janeiro</h2>
+                              <h2 class="mb-4" data-aos="fade-up">Scegli un bed e breakfast <strong>senza impegno e senza sforzo</strong> a Bari</h2>
 
                               <p class="mb-0" data-aos="fade-up">Total 5 HTML pages are included in this template from TemplateMo website. Please check 2 <a href="blog.html">blog</a> pages, <a href="project-detail.html">project</a> page, and <a href="contact.html">contact</a> page. 
                               <br><br>You are <strong>allowed</strong> to use this template for commercial or non-commercial purpose. You are NOT allowed to redistribute the template ZIP file on template collection websites.</p>
