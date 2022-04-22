@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-1">
             <label for="validationCustom04" class="form-label" style="color:transparent;">.</label>
-            <button class="btn btn-primary" id="validationCustom04" name="submit" type="submit">Cerca</button>
+            <button class="btn button_date" id="validationCustom04" name="submit" type="submit">Cerca</button>
         </div>
     </form>
 </div>

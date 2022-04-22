@@ -7,6 +7,7 @@
 ?>
 
 <body>
+<h2 style="text-align: center; padding:20px" class="text-black aos-init aos-animate" data-aos="fade-up">Inserisci i tuoi dati</h2>
 
      <div class="col-lg-8 mx-auto col-md-10 col-12">
                     

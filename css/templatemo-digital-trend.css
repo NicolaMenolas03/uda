@@ -709,5 +709,13 @@ https://templatemo.com/tm-538-digital-trend
       margin-left: 0;
     }
   }
+  .button_date{
+    background: var(--primary-color);
+    border-radius: var(--border-radius-large);
+    color: var(--white-color);
+    cursor: pointer;
+    font-size: var(--p-font-size);
+    padding: 0.5em,0.8em;
+  }
 
 
