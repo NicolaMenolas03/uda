@@ -126,11 +126,12 @@
                                   $controllo = controllousername($_POST["username"], $conn);
                                   if ($controllo==true){
 
-                                   $sql = "INSERT INTO `clienti`(`UsernameCliente`, `Nome`, `Cognome`, `Telefono`, `Email`, `Password`, `Toponimo`, `Nomevia`, `Civico`, `idComuneCli`, `NumCreditCard`, `TipoCreditCard`) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
+                                   $sql = "INSERT INTO clienti(UsernameCliente, Nome, Cognome, Telefono, Email, Password, Toponimo, Nomevia, Civico, idComuneCli, NumCreditCard, TipoCreditCard) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['password']."','".$_POST['citta']."','".$_POST['via']."','".$_POST['civico']."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
 
                                    if ($conn->query($sql) === TRUE) {
-                                    echo "Modifica effettuata";
+                                    echo "<Script>alert('Dati salvati')</Script>";
                                    }
+                                  }
                                   }
                                   else{
                                     header("Refresh: 2");
