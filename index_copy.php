@@ -13,19 +13,19 @@
                       <form method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
                         <div class="row">
                           <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="nome" placeholder="Nome">
+                            <input type="text" class="form-control" name="nome" placeholder="Nome" required>
                           </div>
                           <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="cognome" placeholder="Cognome">
+                            <input type="text" class="form-control" name="cognome" placeholder="Cognome" required>
                           </div>
                           <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono">
+                            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono" required>
                           </div>
                           <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="citta" placeholder="Città">
+                            <input type="text" class="form-control" name="citta" placeholder="Città" required>
                           </div>
                           <div class="col-lg-6 col-12" style="margin-top:11px;">
-                            <select id="comuni" class="custo-select">
+                            <select id="comuni" class="custo-select" required>
                               <?php
                               
 
@@ -41,20 +41,20 @@
                             </select>
                         </div>
                         <div class="col-lg-6 col-12" style="display:flex;justify-content: space-between; margin-top:-3px;">
-                            <input type="text" class="form-control" name="via" placeholder="Via" style="width:80%">   
-                            <input type="text" class="form-control" name="civico" placeholder="N°" style="width:15%">
+                            <input type="text" class="form-control" name="via" placeholder="Via" style="width:80%" required>   
+                            <input type="text" class="form-control" name="civico" placeholder="N°" style="width:15%" required-+>
                           </div>
                           <div class="col-lg-6 col-12">
-                            <input type="text" class="form-control" name="username" placeholder="Username">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
                           </div>
                           <div class="col-lg-6 col-12">
-                            <input type="mail" class="form-control" name="mail" placeholder="E-mail">
+                            <input type="mail" class="form-control" name="mail" placeholder="E-mail" required>
                     </div>
                           <div class="col-lg-6 col-12">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required >
                           </div>
                           <div class="col-lg-6 col-12">
-                          Numero Carta di Credito<input type="text" name="numcred" minlength="16" maxlength="16" min="0" max="9999999999999999" required><br>
+                            <input type="text" name="numcred" minlength="16" maxlength="16" min="0" max="9999999999999999" required><br>
                             Scegli tipo di carta:<select name="carta" id="carta" required>
                                 <option value="visa" name="cartadicredito">Visa</option>
                                 <option value="maestro" name="cartadicredito">Maestro/MasterCard</option>
