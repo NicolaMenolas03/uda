@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once('header.php'); ?>
+<?php 
+  require_once('header.php'); 
+
+  require_once('ConnessionDB.php');
+?>
 
 <body>
 
@@ -24,16 +28,15 @@
                             <select id="comuni" class="custo-select">
                               <?php
                               
-                                  require_once('ConnessionDB.php');
 
                                   $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
                                   $result=mysqli_query($conn,$sql); ?>
-                                  <option name="comune" value="-1">-Seleziona Comune-</option>
+                                  <option name="comune">-Seleziona Comune-</option>
                                   <?php
                                   while($row=mysqli_fetch_array($result)){
                                       echo "<option name='comune' value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
                                   } 
-                                  
+
                               ?>
                             </select>
                         </div>
@@ -51,7 +54,11 @@
                             <input type="password" class="form-control" name="password" placeholder="Password">
                           </div>
                           <div class="col-lg-6 col-12">
-                            
+                          Numero Carta di Credito<input type="text" name="numcred" minlength="16" maxlength="16" min="0" max="9999999999999999" required><br>
+                            Scegli tipo di carta:<select name="carta" id="carta" required>
+                                <option value="visa" name="cartadicredito">Visa</option>
+                                <option value="maestro" name="cartadicredito">Maestro/MasterCard</option>
+                            </select>
                             </div>
                           
                           <div class="col-lg-5 mx-auto col-7">
@@ -82,36 +89,44 @@
                       }
 
                       function controllousername($username){
-                          
+                        
+                        
+                          require_once('ConnessionDB.php');
                           $sql="SELECT UsernameCliente FROM clienti"; 
                           $result=mysqli_query($conn,$sql);
+                          $x=0;
                           if (mysqli_num_rows($result) > 0){
                               while($row=mysqli_fetch_array($result)){
-                                  if ($username!=$row["UsernameCliente"]){
-                                      return true;
-                                  }
-                                  else{
-                                      return false;
+                                  if ($username==$row["UsernameCliente"]){
+                                      $x++;
                                   }
                               } 
                           }
+                          if ($x>0){
+                            return false;
+                          }
+                          else{
+                            return true;
+                          }
                           
-                          mysqli_close($conn);
 
                       }
 
-                      if (isset($_POST["invio"])){
+                      if (isset($_POST["submit"])){
                               
                           $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
+                          
                           $controllo = controllamail($mail);
                           if ($controllo==true){
-                              
                               $controllo = controllonumero($_POST["telefono"]);
                               if ($controllo==true){
                                   
                                   $controllo = controllousername($_POST["username"]);
                                   if ($controllo==true){
-                                      echo "<script>window.location.href='registraticarta.php';</script>";
+                                    
+                                   echo "<script>alert('lello')</script>";
+                                   // $sql = "INSERT INTO `clienti`(`UsernameCliente`, `Nome`, `Cognome`, `Telefono`, `Email`, `Password`, `Toponimo`, `Nomevia`, `Civico`, `idComuneCli`, `NumCreditCard`, `TipoCreditCard`) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['comune']."','".$mail."' )";
+                                    //if ($conn->query($sql) === TRUE) {}
                                   }
                                   else{
                                     header("Refresh: 2");
