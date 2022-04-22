@@ -27,13 +27,13 @@
         Via<input type="text" name="via" required><br>
         Civico<input type="text" name="civico" required><br>
         Username<input type="text" name="username" required><br>
-        <!--
 
-        Numero Carta di Credito<input type="text" name="numcred"><br>
-        S<select name="cars" id="cars">
-        <option value="visa" name="cartadicredito">Visa</option>
-        <option value="maestro" name="cartadicredito">Maestro</option>
-        </select>-->
+        Numero Carta di Credito<input type="text" name="numcred"  minlength="16" maxlength="16" min="0" max="9999999999999999" required><br>
+        Scegli tipo della carta
+        <select name="carte" id="carte" required>
+                <option value="visa" name="cartadicredito">Visa</option>
+                <option value="maestro" name="cartadicredito">Maestro</option>
+            </select>
         Mail<input type="text" name="mail" required><br>
         Password<input type="password" name="password" autocomplete="on" required><br>
        <input type="submit" name="invio">
@@ -88,7 +88,14 @@
                     
                     $controllo = controllousername($_POST["username"]);
                     if ($controllo==true){
-                        echo "<script>window.location.href='registraticarta.php';</script>";
+                        //echo "<script>window.location.href='registraticarta.php';</script>";
+                        require_once('ConnessionDB.php');
+                        $sql = "INSERT INTO `utente`(`Nome`, `Cognome`, `Data_di_Nascita`) VALUES ('$NomeR','$CognomeR','$DataNascita')";
+                        if ($conn->query($sql) === TRUE) {
+                        }
+
+
+
                     }
                     else{
 
