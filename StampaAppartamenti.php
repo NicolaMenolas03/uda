@@ -1,9 +1,41 @@
+<style>
+		.alb {
+			width: 200px;
+			height: 200px;
+			padding: 5px;
+		}
+		.alb img {
+			width: 100%;
+			height: 100%;
+		}
+		a {
+			text-decoration: none;
+			color: black;
+		}
+</style>
 <?php require_once('header.php');
-
-
 session_start();
-error_reporting(0);
-    require_once('ConnessionDB.php');
+
+//GESTIONE IMMAGINI
+?>
+<a href="InserisciCasa.php">&#8592;</a>
+     <?php 
+     require_once('ConnessionDB.php');
+          $sql = "SELECT * FROM appartamenti ORDER BY IdAppartamento DESC";
+          $res = mysqli_query($conn,  $sql);
+          if (mysqli_num_rows($res) > 0) {
+          	while ($images = mysqli_fetch_assoc($res)) {  ?>
+                             
+                 <?php 
+                 $m = $images['IdAppartamento'];
+                 $link[$m]=$images['image'];
+
+
+          		 } }
+
+//FINE GESTIONE IMMAGINI
+
+    
     $lpl = $_SESSION['search'];
     echo "
     <form action='StampaAppartamenti.php' method='POST'>
@@ -91,7 +123,6 @@ error_reporting(0);
                 }
             }
             
-            
             if($t==true)
             {
                 echo"    <form action='paga.php' method='POST'>
@@ -102,6 +133,11 @@ error_reporting(0);
                 echo"    <form action='paga.php' method='POST'>
                 ". "<br><hr><br><b><b><font color='red'>OCCUPATO</font></b> <br>" . $Nome[$i] . "</b> <br>" . $Via[$i]  . "<br>Prezzo a notte:" . $Prezzo[$i] . "<br>Prezzo totale:" . $PrezzoF[$i] . "<br>" . "<input type='radio' name='Appartamenti' value='$z' disabled>";
             }
+            ?>
+            <div class="alb">
+             	<img src="uploads/<?=$link[$z]?>">
+            </div>
+            <?php
         }
         echo "<hr>";
         echo "<br><br><input type='submit' value='avanti'>

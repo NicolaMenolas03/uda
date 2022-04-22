@@ -1,4 +1,4 @@
-<?php require_once('header.php');?>
+<?php require_once('header.php');error_reporting(0);?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -56,6 +56,7 @@
 
 <?php
 session_start();
+
 require_once('ConnessionDB.php');
 
 

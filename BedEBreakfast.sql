@@ -27,6 +27,7 @@ Prezzo double not null,
 Descrizione VARCHAR(1000) not null,
 idProprietario INTEGER not null,
 Posizione VARCHAR(500) not null,
+image VARCHAR(200) not null,
 FOREIGN KEY (idComuneApp) REFERENCES comuni(IdComune),
 FOREIGN KEY (idProprietario) REFERENCES Proprietari(IdProprietario)    
 )engine='InnoDB';
