@@ -18,7 +18,8 @@ session_start();
 error_reporting(0);
 //GESTIONE IMMAGINI
 ?>
-<a href="InserisciCasa.php">&#8592;</a>
+<div style='display:flex;flex-direction:row;padding:1em;padding: bottom 0em;'>
+<a href="InserisciCasa.php"><i class='bx bx-left-arrow-alt' style='font-size:5em;'></i></a>
      <?php 
      require_once('ConnessionDB.php');
           $sql = "SELECT * FROM appartamenti ORDER BY IdAppartamento DESC";
@@ -38,15 +39,17 @@ error_reporting(0);
     
     $lpl = $_SESSION['search'];
     echo "
-    <form action='StampaAppartamenti.php' method='POST'>
-    <input type='text' name='search' placeholder='$lpl'>
-    <input type='submit' name='submit' value='Cerca'>
-    </form>";
+    <form action='StampaAppartamenti.php' class='contact-form' style='display: flex;width: 80%' method='POST'>
+    <input type='text' class='form-control' style='width:20%;padding:auto;margin-left:2em' name='search' placeholder='$lpl'>
+    <input type='submit' class='form-control' name='submit' id='submit-button' style='width:10%;margin-left:2em' value='Cerca'>
+    </form>
+    </div>
+    ";
 
     $start = strtotime($_SESSION['checkin']);
     $end = strtotime($_SESSION['checkout']);
     $days_between = ceil(abs($end - $start) / 86400);
-    echo "Le date sono: " . $days_between . "<br>";
+    echo "<div class='' style='margin-left:13em'>Le date sono: " . $days_between . "</div><br>";
     if(isset($_POST['search']))
     {
         $_SESSION['search'] = $_POST['search'];
@@ -126,15 +129,22 @@ error_reporting(0);
             
             if($t==true)
             {?>
-                <form action='StampaAppartamenti.php' method='POST'>
-                <br><hr><br><b><font color='green'>LIBERO</font></b> <br><?php echo $Nome[$i] ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' name='<?php echo $z ?>' value='Apri'>
+                <div class="cards">
+                <div class="alb">
+             	<img src="uploads/<?=$link[$z]?>" style="border-radius: 8px;padding: right 2em;">
+            </div>
+            
+            
+                <form action='StampaAppartamenti.php' class="contact-form" method='POST' style="padding-left: 2em;">
+                <font color='green'>LIBERO</font></p><?php echo "<strong class='title'>".$Nome[$i]."</strong>" ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' class="form-control" name='<?php echo $z ?>' value='Apri'>
                 </form>
+                
                 <?php
             }
             else
             {?>
-                <form action='StampaAppartamenti.php' method='POST'>
-                <br><hr><br><b><font color='red'>OCCUPATO DAL <?php echo $oc ?></font></b> <br><?php echo $Nome[$i] ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' name='<?php echo $z ?>' value='Apri' disabled>
+                <form action='StampaAppartamenti.php' class="contact-form" method='POST'>
+                <b><font color='red'>OCCUPATO DAL <?php echo $oc ?></font></b> <br><?php echo $Nome[$i] ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' class="form-control" name='<?php echo $z ?>' value='Apri' disabled>
                 </form>
                 <?php
             }
@@ -142,10 +152,11 @@ error_reporting(0);
             ?>
             <!-- IMMAGINE -->
             
-            <div class="alb">
-             	<img src="uploads/<?=$link[$z]?>">
-            </div>
+            
+            
             <!-- FINE IMMAGINE -->
+            </div>
+            <br>
             <?php
             
         }
@@ -159,8 +170,6 @@ error_reporting(0);
                 echo "<script>window.location.href='index_copy.php';</script>";
             }
         }
-
-        echo "<hr>";
 
 
     require_once("footer.php");
