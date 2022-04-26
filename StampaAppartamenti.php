@@ -18,6 +18,7 @@ session_start();
 error_reporting(0);
 //GESTIONE IMMAGINI
 ?>
+
 <div style='display:flex;flex-direction:row;padding:1em;padding: bottom 0em;'>
 <a href="InserisciCasa.php"><i class='bx bx-left-arrow-alt' style='font-size:5em;'></i></a>
      <?php 
@@ -42,6 +43,7 @@ error_reporting(0);
     <form action='StampaAppartamenti.php' class='contact-form' style='display: flex;width: 80%' method='POST'>
     <input type='text' class='form-control' style='width:20%;padding:auto;margin-left:2em' name='search' placeholder='$lpl'>
     <input type='submit' class='form-control' name='submit' id='submit-button' style='width:10%;margin-left:2em' value='Cerca'>
+    <h2 style='text-align: center; padding:20px;margin-left:4em' class='text-black aos-init aos-animate' data-aos='fade-up'>Seleziona il tuo B&B</h2>
     </form>
     </div>
     ";
