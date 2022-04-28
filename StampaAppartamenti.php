@@ -145,8 +145,13 @@ error_reporting(0);
             }
             else
             {?>
+            <div class="cards">
+                <div class="alb">
+             	<img src="uploads/<?=$link[$z]?>" style="border-radius: 8px;padding: right 2em;">
+            </div>
+            
                 <form action='StampaAppartamenti.php' class="contact-form" method='POST'>
-                <b><font color='red'>OCCUPATO DAL <?php echo $oc ?></font></b> <br><?php echo $Nome[$i] ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' class="form-control" name='<?php echo $z ?>' value='Apri' disabled>
+                <font color='red'>OCCUPATO DAL <?php echo $oc ?><br></font><?php echo "<strong class='title'>".$Nome[$i]."</strong>" ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' class="form-control" name='<?php echo $z ?>' value='' disabled>
                 </form>
                 <?php
             }
@@ -169,7 +174,7 @@ error_reporting(0);
             {
                 $_SESSION['Appartamento']=$i;
                 $_SESSION['PrezzoFinAppartamento']=$PrezzoF[$i];
-                echo "<script>window.location.href='index_copy.php';</script>";
+                echo "<script>window.location.href='index_copy.php?Id=$i';</script>";
             }
         }
 
