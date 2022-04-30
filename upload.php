@@ -1,5 +1,4 @@
 <?php 
-
 if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 	require_once('ConnessionDB.php');
 

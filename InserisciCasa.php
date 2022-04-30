@@ -52,10 +52,35 @@
                                           <p><?php echo $_GET['error']; ?></p>
                                     <?php endif ?>
                                     <form action="upload.php" method="post" enctype="multipart/form-data">
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" name="Toponiomo" placeholder="Toponiomo" required>
+                                    </div>      
+
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" name="NomeVia" placeholder="Nome Via" required>
+                                    </div>  
+
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" name="Civico"  placeholder="Civico" required>
+                                    </div>  
+                                    <!-- IDCOMUNE -->
+                                    <div class="col-lg-6 col-12">
+                                          <input type="number" name="Prezzo" placeholder="Prezzo" required>
+                                    </div>  
+
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" name="Descrizione" placeholder="Descrizione" required>  	
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" name="Posizione" placeholder="Posizione" required>  	
+                                    </div>
+
                                           <input type="file" name="my_image">
                                           <input type="submit" name="submit" value="Upload">  	
                                     </form>
+                                    
                                     <?php
+                                    
                               }
                               else{
                                     echo "Error: " . $sql . "<br>" . $conn->error;
