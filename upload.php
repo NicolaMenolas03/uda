@@ -1,4 +1,5 @@
 <?php 
+session_start();
 if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 	require_once('ConnessionDB.php');
 
@@ -27,10 +28,11 @@ if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 				move_uploaded_file($tmp_name, $img_upload_path);
 
 				// Insert into Database
-				$sql = "INSERT INTO appartamenti(image) 
-				        VALUES('$new_img_name')";
+				$sql = "INSERT INTO appartamenti(Toponimo, Nomevia, Civico, idComuneApp, Prezzo, Descrizione, idProprietario, Posizione, image) 
+				        VALUES('".$_POST["Toponimo"]."',".$_POST["Nomevia"]."',".$_POST["Civico"]."',".$_POST["comune"]."',".$_POST["Prezzo"]."',".$_POST["Descrizione"]."',".$_POST["idProprietario"].",".$_POST["Posizione"]."','$new_img_name')";
 				mysqli_query($conn, $sql);
 				header("Location: view.php");
+				session_destroy();
 			}else {
 				$em = "You can't upload files of this type";
 		        header("Location: InserisciCasa.php?error=$em");

@@ -54,49 +54,71 @@
                               $sql = "INSERT INTO Proprietari(Nome, Cognome, Telefono, Email) VALUES ('".$_POST["nome"]."','".$_POST["cognome"]."','".$_POST["telefono"]."','".$mail."')";
 
                               if ($conn->query($sql) === TRUE) {
-                                    if (isset($_GET['error'])): ?>
-                                          <p><?php echo $_GET['error']; ?></p>
-                                    <?php endif ;
-                                          if (isset($_SESSION["Controllo"])){
-                                    ?>
-                                                <form action="upload.php" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form" method="post" enctype="multipart/form-data">
-                                                <div class="col-lg-6 col-12">
-                                                      <input type="text" class="form-control" name="Toponiomo" placeholder="Toponiomo" required>
-                                                </div>      
-
-                                                <div class="col-lg-6 col-12">
-                                                      <input type="text" class="form-control" name="NomeVia" placeholder="Nome Via" required>
-                                                </div>  
-
-                                                <div class="col-lg-6 col-12">
-                                                      <input type="text" class="form-control" name="Civico"  placeholder="Civico" required>
-                                                </div>  
-                                                <!-- IDCOMUNE -->
-                                                <div class="col-lg-6 col-12">
-                                                      <input type="number" class="form-control" name="Prezzo" placeholder="Prezzo" required>
-                                                </div>  
-
-                                                <div class="col-lg-6 col-12">
-                                                      <input type="text" class="form-control" name="Descrizione" placeholder="Descrizione" required>  	
-                                                </div>
-                                                <div class="col-lg-6 col-12">
-                                                      <input type="text" class="form-control" name="Posizione" placeholder="Posizione" required>  	
-                                                </div>
-
-                                                      <input type="file" name="my_image">
-                                                      <input type="submit" name="submit" value="Upload">  	
-                                                </form>
-                                                
-                                    <?php
-                                          }
-                                    if (isset($_POST["submit"])){
-                                          
-                                    }
+                                    if (isset($_GET['error'])): 
+                                          echo $_GET['error']; 
+                                    endif;
                               }
                               else{
                                     echo "Error: " . $sql . "<br>" . $conn->error;
                               }
                         }
+                  }
+
+
+                  if (isset($_SESSION["Controllo"])){ ?>
+                  <div class="col-lg-8 mx-auto col-md-10 col-12"> 
+                        
+                        <form action="upload.php" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form" method="post" enctype="multipart/form-data">
+                              <div class="row">  
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" class="form-control" name="Toponimo" placeholder="Toponimo" required>
+                                    </div>      
+
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" class="form-control" name="NomeVia" placeholder="Nome Via" required>
+                                    </div>  
+
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" class="form-control" name="Civico"  placeholder="Civico" required>
+                                    </div>  
+                                    <div class="col-lg-6 col-12" style="margin-top:11px;">
+                                          <select name="comune" id="comuni" class="custo-select" required>
+                                          <?php
+                                          
+
+                                                $sql="SELECT IdComune,CAP,Comune FROM comuni"; 
+                                                $result=mysqli_query($conn,$sql); ?>
+                                                <option>-Seleziona Comune-</option>
+                                                <?php
+                                                while($row=mysqli_fetch_array($result)){
+                                                echo "<option value='".$row['IdComune']."'>".$row['CAP']." | ".$row['Comune']."</option>";
+                                                } 
+
+                                          ?>
+                                          </select>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                          <input type="number" class="form-control" name="Prezzo" placeholder="Prezzo" required>
+                                    </div>  
+
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" class="form-control" name="Descrizione" placeholder="Descrizione" required>  	
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                          <input type="text" class="form-control" name="Posizione" placeholder="Posizione" required>  	
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                          <input type="file" name="my_image" required>
+                                    </div>
+                                    <div class="col-lg-5 mx-auto col-7">
+                                          <input type="submit" class="form-control" name="submit" value="Invia" id="submit-button" >  	
+                                    </div>
+                                    
+                              </div>
+                        </form>
+                  </div>
+                        
+            <?php
                   }
 
             ?>
