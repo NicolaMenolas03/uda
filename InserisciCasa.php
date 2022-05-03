@@ -57,6 +57,8 @@
                                     if (isset($_GET['error'])): 
                                           echo $_GET['error']; 
                                     endif;
+                                    echo "<Script>window.location.href='InserisciCasa.php';</Script>";
+
                               }
                               else{
                                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -66,6 +68,7 @@
 
 
                   if (isset($_SESSION["Controllo"])){ ?>
+                  
                   <div class="col-lg-8 mx-auto col-md-10 col-12"> 
                         
                         <form action="upload.php" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form" method="post" enctype="multipart/form-data">
