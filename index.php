@@ -60,6 +60,7 @@
 </section>
 
      </body>
-    <?php require_once("footer.php"); ?>
+    <?php session_destroy();
+    require_once("footer.php"); ?>
 
 </html>
