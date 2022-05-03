@@ -1,3 +1,14 @@
+<?php
+    /* se c'è id nell'array superglobale $_GET (cioè in querystring)
+     fai controllo se l'appartamento è disponibile:
+        - se disp. mostra il form (nel form metti un campo hidden con l'id dell'appartamento)
+        - il form funziona in POST (nella pagina dove vai a fare la submit c'è l'array superglobale $_POST)
+        - se non disponibile mostra messaggio di errore
+        se non c'è l'id in querystring con un for mostra gli appartamenti disponibili estraendoli dal db e con un for
+
+    */
+
+?>
 <style>
 		.alb {
 			width: 200px;
@@ -108,7 +119,9 @@ error_reporting(0);
         for($i=0; $i<$p;$i++)
         {
             $t=true;
-            $z = $IdAppartamento[$i];  
+            $z = $IdAppartamento[$i];
+            $PF = $PrezzoF['$i'];  
+            echo
             //echo "z: ".$z;  
             $u = count($checkin[$z]);
             //echo "u: ".$u;
@@ -131,6 +144,7 @@ error_reporting(0);
             
             if($t==true)
             {?>
+            <a href="index_copy.php?Id=<?php echo $z ?> &PF= <?php echo $PF?>">
                 <div class="cards">
                 <div class="alb">
              	<img src="uploads/<?=$link[$z]?>" style="border-radius: 8px;padding: right 2em;">
@@ -138,7 +152,7 @@ error_reporting(0);
             
             
                 <form action='StampaAppartamenti.php' class="contact-form" method='POST' style="padding-left: 2em;">
-                <font color='green'>LIBERO</font></p><?php echo "<strong class='title'>".$Nome[$i]."</strong>" ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' class="form-control" name='<?php echo $z ?>' value='Apri'>
+                <font color='green'>LIBERO</font></p><?php echo "<strong class='title'>".$Nome[$i]."</strong>" ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br>
                 </form>
                 
                 <?php
@@ -151,7 +165,7 @@ error_reporting(0);
             </div>
             
                 <form action='StampaAppartamenti.php' class="contact-form" method='POST'>
-                <font color='red'>OCCUPATO DAL <?php echo $oc ?><br></font><?php echo "<strong class='title'>".$Nome[$i]."</strong>" ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br> <input type='submit' class="form-control" name='<?php echo $z ?>' value='' disabled>
+                <font color='red'>OCCUPATO DAL <?php echo $oc ?><br></font><?php echo "<strong class='title'>".$Nome[$i]."</strong>" ?> </b> <br> <?php echo $Via[$i]  ?> <br>Prezzo a notte:<?php echo $Prezzo[$i] ?> <br>Prezzo totale:<?php echo $PrezzoF[$i] ?> <br>
                 </form>
                 <?php
             }
@@ -163,21 +177,11 @@ error_reporting(0);
             
             <!-- FINE IMMAGINE -->
             </div>
+        </a>
             <br>
             <?php
             
         }
-
-        for($i=1; $i<($z+1); $i++)
-        {
-            if(isset($_POST[$i]))
-            {
-                $_SESSION['Appartamento']=$i;
-                $_SESSION['PrezzoFinAppartamento']=$PrezzoF[$i];
-                echo "<script>window.location.href='index_copy.php?Id=$i';</script>";
-            }
-        }
-
 
     require_once("footer.php");
 ?>

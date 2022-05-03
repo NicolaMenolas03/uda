@@ -5,6 +5,9 @@
   require_once('header.php'); 
   require_once('ConnessionDB.php');
   error_reporting(0);
+  session_start();
+  $_SESSION['IdAppartamenti']=$_GET['Id'];
+  echo $_SESSION['IdAppartamenti'];
 ?>
 
 <body>
