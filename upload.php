@@ -1,16 +1,16 @@
 <?php 
 session_start();
-if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
+if (isset($_POST['submit']) && isset($_FILES['file_1'])) {
 	require_once('ConnessionDB.php');
 
 	echo "<pre>";
-	print_r($_FILES['my_image']);
+	print_r($_FILES['file_1']);
 	echo "</pre>";
 
-	$img_name = $_FILES['my_image']['name'];
-	$img_size = $_FILES['my_image']['size'];
-	$tmp_name = $_FILES['my_image']['tmp_name'];
-	$error = $_FILES['my_image']['error'];
+	$img_name = $_FILES['file_1']['name'];
+	$img_size = $_FILES['file_1']['size'];
+	$tmp_name = $_FILES['file_1']['tmp_name'];
+	$error = $_FILES['file_1']['error'];
 
 	if ($error === 0) {
 		if ($img_size > 125000) {
