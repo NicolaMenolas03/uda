@@ -62,7 +62,7 @@ error_reporting(0);
     $start = strtotime($_SESSION['checkin']);
     $end = strtotime($_SESSION['checkout']);
     $days_between = ceil(abs($end - $start) / 86400);
-    echo "<div class='' style='margin-left:13em'>Le date sono: " . $days_between . "</div><br>";
+    echo "<div class='' style='margin-left:13em'> Le date sono: " . $days_between . "</div><br>";
     if(isset($_POST['search']))
     {
         $_SESSION['search'] = $_POST['search'];
@@ -119,9 +119,7 @@ error_reporting(0);
         for($i=0; $i<$p;$i++)
         {
             $t=true;
-            $z = $IdAppartamento[$i];
-            $PF = $PrezzoF['$i'];  
-            echo
+            $z = $IdAppartamento[$i]; 
             //echo "z: ".$z;  
             $u = count($checkin[$z]);
             //echo "u: ".$u;
@@ -144,7 +142,7 @@ error_reporting(0);
             
             if($t==true)
             {?>
-            <a href="index_copy.php?Id=<?php echo $z ?> &PF= <?php echo $PF?>">
+            <a href="index_copy.php?Id=<?php echo $z ?>&CF=<?php echo $PrezzoF[$i] ?>">
                 <div class="cards">
                 <div class="alb">
              	<img src="uploads/<?=$link[$z]?>" style="border-radius: 8px;padding: right 2em;">

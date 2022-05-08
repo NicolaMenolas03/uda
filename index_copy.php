@@ -7,7 +7,7 @@
   error_reporting(0);
   session_start();
   $_SESSION['IdAppartamenti']=$_GET['Id'];
-  echo $_SESSION['IdAppartamenti'];
+  $_SESSION['PrezzoF']=$_GET['CF'];
 ?>
 
 <body>
@@ -135,6 +135,10 @@
 
                                    if ($conn->query($sql) === TRUE) {
                                     echo "<Script>alert('Dati salvati')</Script>";
+                                   }
+                                   else
+                                   {
+                                    echo "<Script>alert('Errore nei dati')</Script>";
                                    }
                                   }
                                   }

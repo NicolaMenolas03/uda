@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 if (isset($_POST['submit']) && isset($_FILES['file_1'])) {
 	require_once('ConnessionDB.php');
 
@@ -28,10 +29,18 @@ if (isset($_POST['submit']) && isset($_FILES['file_1'])) {
 				move_uploaded_file($tmp_name, $img_upload_path);
 
 				// Insert into Database
+				echo "Toponimo".$_POST["Toponimo"]."<br>";
+				echo "Nomevia".$_POST["Nomevia"]."<br>";
+				echo "Civico".$_POST["Civico"]."<br>";
+				echo "idComuneApp".$_POST["idComuneApp"]."<br>";
+				echo "Prezzo".$_POST["Prezzo"]."<br>";
+				echo "Descrizione".$_POST["Descrizione"]."<br>";
+				echo "idProprietario".$_POST["idProprietario"]."<br>";
+				echo "Posizione".$_POST["Posizione"]."<br>";
+				echo "image".$_POST["image"]."<br>";
 				$sql = "INSERT INTO appartamenti(Toponimo, Nomevia, Civico, idComuneApp, Prezzo, Descrizione, idProprietario, Posizione, image) 
 				        VALUES('".$_POST["Toponimo"]."',".$_POST["Nomevia"]."',".$_POST["Civico"]."',".$_POST["comune"]."',".$_POST["Prezzo"]."',".$_POST["Descrizione"]."',".$_POST["idProprietario"].",".$_POST["Posizione"]."','$new_img_name')";
 				mysqli_query($conn, $sql);
-				header("Location: view.php");
 				session_destroy();
 			}else {
 				$em = "You can't upload files of this type";
@@ -44,5 +53,5 @@ if (isset($_POST['submit']) && isset($_FILES['file_1'])) {
 	}
 
 }else {
-	header("Location: InserisciCasa.php");
+	//header("Location: InserisciCasa.php");
 }

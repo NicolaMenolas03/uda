@@ -1,3 +1,4 @@
+<?php session_destroy(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once('header.php'); ?>
@@ -60,7 +61,7 @@
 </section>
 
      </body>
-    <?php session_destroy();
+    <?php 
     require_once("footer.php"); ?>
 
 </html>
