@@ -4,7 +4,6 @@
   //error_reporting(0);
   require_once('header.php'); 
   require_once('ConnessionDB.php');
-  error_reporting(0);
   session_start();
   $_SESSION['IdAppartamenti']=$_GET['Id'];
   $_SESSION['PrezzoF']=$_GET['CF'];
@@ -70,7 +69,7 @@
             </select>
           </div>
           <div class="col-lg-5 mx-auto col-7">
-            <button type="submit" class="form-control" id="submit-button" name="submit">Invio</button>
+            <button type="submit" class="form-control" id="submit-button" name="submit">Paga</button>
           </div>
         </div>
 
@@ -130,17 +129,37 @@
                                   
                                   $controllo = controllousername($_POST["username"], $conn);
                                   if ($controllo==true){
-
+                                    
+                                  $US = $_POST['username'];
                                    $sql = "INSERT INTO clienti(UsernameCliente, Nome, Cognome, Telefono, Email, Password, Toponimo, Nomevia, Civico, idComuneCli, NumCreditCard, TipoCreditCard) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['password']."','".$_POST['citta']."','".$_POST['via']."','".$_POST['civico']."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
 
-                                   if ($conn->query($sql) === TRUE) {
-                                    echo "<Script>alert('Dati salvati')</Script>";
-                                   }
+                                    if (mysqli_query($conn, $sql)) {
+                                      
+                                    } else {
+                                      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                    }
+                                    $Checkin = $_SESSION['checkin'];
+                                    $Checkout = $_SESSION['checkout'];
+                                    $Prezz = $_SESSION['PrezzoF'];
+                                    $IdA = $_SESSION['IdAppartamenti'];
+                                    echo "Checkin ".$Checkin."<br>";
+                                    echo "Checkin ".$Checkout."<br>";
+                                    echo "Prezz ".$Prezz."<br>";
+                                    echo "IdA ".$IdA."<br>";
+                                    echo "Username ".$US."<br>";
+                                    $sql = "INSERT INTO `affitti`(`Checkin`, `Checkout`, `Import`, `idAppartamento`, `usernameCliente`) VALUES ('$Checkin','$Checkout',$Prezz,$IdA,'$US')";
+                                  if (mysqli_query($conn, $sql)) {
+                                    
+                                    echo "<Script>window.location.href='index.php';</Script>";
+                                  } else {
+                                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                  }
+                                  }
                                    else
                                    {
                                     echo "<Script>alert('Errore nei dati')</Script>";
                                    }
-                                  }
+                                  
                                   }
                                   else{
                                     header("Refresh: 2");
@@ -150,9 +169,7 @@
                                 header("Refresh: 2");
                               }
 
-                          }
-                          else{
-                            header("Refresh: 2");
+                          
                           }
                          
                   ?>

@@ -12,7 +12,7 @@
         </div>
         <div class="col-md-3">
             <label for="validationCustom03" class="form-label">Città</label>
-            <input type="text" class="form-control" id="validationCustom03"  placeholder="Dove vuoi andare?" name="comune" required>
+            <input type="text" class="form-control" id="validationCustom03"  placeholder="Dove vuoi andare?" name="comune">
                 <div class="invalid-feedback">
                     Inserisci una destinazione per iniziare la ricerca
                 </div>
