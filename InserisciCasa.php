@@ -73,15 +73,11 @@ session_start();
                   
 
             }
-      }
 
-
-      if (isset($_SESSION["Controllo"])) { ?>
-            <?php 
                   $Nome = $_POST['nome'];
                   $Cognome = $_POST['cognome'];
                   $Telefono = $_POST['telefono'];
-                  $sql = "SELECT IdProprietario FROM Propietari WHERE nome='$Nome' and cognome='$Cognome' and telefono='$Telefono'";
+                  $sql = "SELECT IdProprietario FROM Proprietari WHERE nome='$Nome' and cognome='$Cognome' and telefono='$Telefono'";
                   $result = mysqli_query($conn, $sql);
                   
                   if (mysqli_num_rows($result) > 0) {
@@ -92,7 +88,11 @@ session_start();
                   } else {
                   echo "0 results";
                   }
-             ?>
+                  
+      }
+
+
+      if (isset($_SESSION["Controllo"])) { ?>
             <div class="col-lg-8 mx-auto col-md-10 col-12">
 
                   <form action="upload.php" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form" method="post" enctype="multipart/form-data">

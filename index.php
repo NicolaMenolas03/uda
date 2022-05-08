@@ -1,12 +1,6 @@
 <?php 
-<<<<<<< Updated upstream
-     error_reporting(0);
-     session_destroy(); 
-?>
-=======
 session_start();
 session_destroy(); ?>
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once('header.php'); ?>
@@ -21,7 +15,7 @@ session_destroy(); ?>
 
                                    <h1 class="text-white" data-aos="fade-up">I tuoi alloggi da sogno</h1>
 
-                                   <a href="index_copy.php" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Prenota ora</a>
+                                   <a href="SceltaDate.php" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Prenota ora</a>
                                    <a href="InserisciCasa.php" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Affitta ora</a>
                               </div>
                         </div>

@@ -31,7 +31,7 @@ error_reporting(0);
 ?>
 
 <div style='display:flex;flex-direction:row;padding:1em;padding: bottom 0em;'>
-<a href="InserisciCasa.php"><i class='bx bx-left-arrow-alt' style='font-size:5em;'></i></a>
+<a href="SceltaDate.php"><i class='bx bx-left-arrow-alt' style='font-size:5em;'></i></a>
      <?php 
      require_once('ConnessionDB.php');
           $sql = "SELECT * FROM appartamenti ORDER BY IdAppartamento DESC";
@@ -62,7 +62,7 @@ error_reporting(0);
     $start = strtotime($_SESSION['checkin']);
     $end = strtotime($_SESSION['checkout']);
     $days_between = ceil(abs($end - $start) / 86400);
-    echo "<div class='' style='margin-left:13em'> Le date sono: " . $days_between . "</div><br>";
+    echo "<div class='' style='margin-left:13em'> I giorni di permanenza sono: " . $days_between . "</div><br>";
     if(isset($_POST['search']))
     {
         $_SESSION['search'] = $_POST['search'];

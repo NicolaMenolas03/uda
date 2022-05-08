@@ -4,9 +4,6 @@ session_start();
 if (isset($_POST['submit']) && isset($_FILES['file_1'])) {
 	require_once('ConnessionDB.php');
 
-	echo "<pre>";
-	print_r($_FILES['file_1']);
-	echo "</pre>";
 
 	$img_name = $_FILES['file_1']['name'];
 	$img_size = $_FILES['file_1']['size'];
@@ -36,12 +33,13 @@ if (isset($_POST['submit']) && isset($_FILES['file_1'])) {
 				$Prezzo = $_POST["Prezzo"];
 				$Descrizione = $_POST["Descrizione"];
 				$IDPROP = $_SESSION['IdProprietario'];
-				$Posizione = $_POST["Posizione"]."<br>";
+				$Posizione = $_POST["Posizione"];
 				$sql = "INSERT INTO appartamenti(Toponimo, NomeVia, Civico, idComuneApp, Prezzo, Descrizione, IdProprietario, Posizione, image) 
 				        VALUES('$Toponimo', '$NomeVia', $Civico, $idComuneApp, '$Prezzo', '$Descrizione', $IDPROP, '$Posizione', '$new_img_name')";
 				
 				if (mysqli_query($conn, $sql)) {
 					echo "New record created successfully";
+					header("Location: index.php");
 				} else {
 					echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 				}
