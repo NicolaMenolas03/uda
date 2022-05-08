@@ -42,7 +42,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="index_copy.php" class="nav-link contact">Prenota</a>
+                        <a href="SceltaDate.php" class="nav-link contact">Prenota</a>
                     </li>
                     <li class="nav-item">
                         <a href="InserisciCasa.php" class="nav-link contact">Affitta</a>

@@ -132,7 +132,7 @@ error_reporting(0);
                 for($y=0; $y<$u; $y++)
                 {  
                     //echo "///".$u." ".$z."///";  
-                    if($checkin[$z][$y]<=$_SESSION['checkin'] && $checkout[$z][$y]>=$_SESSION['checkin'] || $checkout[$z][$y]>=$_SESSION['checkout'] && $checkin[$z][$y]<=$_SESSION['checkout'])
+                    if($checkin[$z][$y]<=$_SESSION['checkin'] && $checkout[$z][$y]>=$_SESSION['checkin'] || $checkout[$z][$y]>=$_SESSION['checkout'] && $checkin[$z][$y]<=$_SESSION['checkout'] || $checkin[$z][$y]>=$_SESSION['checkin'] && $checkout[$z][$y]<=$_SESSION['checkout'])
                     {
                         $t = false;
                         $oc = $checkin[$z][$y]." AL ".$checkout[$z][$y];

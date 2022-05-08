@@ -1,4 +1,3 @@
-
 USE brx553jfhvrjufqsjwzs;
 
 Create TABLE Proprietari(
