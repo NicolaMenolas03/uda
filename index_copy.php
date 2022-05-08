@@ -17,19 +17,19 @@
       <form method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
         <div class="row">
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="nome" placeholder="Nome" required>
+            <input type="text" class="form-control" name="nome" placeholder="Nome" >
           </div>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="cognome" placeholder="Cognome" required>
+            <input type="text" class="form-control" name="cognome" placeholder="Cognome" >
           </div>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono" required>
+            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono" >
           </div>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="citta" placeholder="Città" required>
+            <input type="text" class="form-control" name="citta" placeholder="Città" >
           </div>
           <div class="col-lg-6 col-12" style="margin-top:11px;">
-            <select name="comune" id="comuni" class="custo-select" required>
+            <select name="comune" id="comuni" class="custo-select" >
               <?php
               
 
@@ -45,8 +45,8 @@
             </select>
         </div>
         <div class="col-lg-6 col-12" style="display:flex;justify-content: space-between; margin-top:-3px;">
-            <input type="text" class="form-control" name="via" placeholder="Via" style="width:80%" required>   
-            <input type="text" class="form-control" name="civico" placeholder="N°" style="width:15%" required-+>
+            <input type="text" class="form-control" name="via" placeholder="Via" style="width:80%" >   
+            <input type="text" class="form-control" name="civico" placeholder="N°" style="width:15%">
           </div>
           <div class="col-lg-6 col-12">
             <input type="text" class="form-control" name="username" placeholder="Username" required>
@@ -58,11 +58,11 @@
             <input type="password" class="form-control" name="password" placeholder="Password" required >
           </div>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control"   name="numcred" minlength="16" maxlength="16" min="1111111111111111" max="9999999999999999" placeholder="Numero della Carta" required><br>
+            <input type="text" class="form-control"   name="numcred" minlength="16" maxlength="16" min="1111111111111111" max="9999999999999999" placeholder="Numero della Carta" ><br>
           </div>
 
           <div class="col-lg-6 col-12">
-            <select name="carta" class="custo-select" id="carta" required>
+            <select name="carta" class="custo-select" id="carta" >
                 <option>-Scegli tipo carta-</option>
                 <option value="visa">Visa</option>
                 <option value="maestro">Maestro/MasterCard</option>
@@ -77,12 +77,23 @@
     </div>
 
                   <?php
-                      function controllamail($mail){
+                      function controllamail($mail, $conn){
                           if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                            $sql="SELECT Email FROM clienti"; 
+                            $result=mysqli_query($conn,$sql);
+                            $x=0;
+                            if (mysqli_num_rows($result) > 0){
+                                while($row=mysqli_fetch_array($result)){
+                                    if ($mail==$row["Email"]){
+                                      return false;
+                                    }
+                                } 
+                            }  
+                            if ($x==0){
                               return true;
-                          }
-                          else {
-                              return false;
+                            }
+                            
+                            
                           }
                       }
 
@@ -122,51 +133,85 @@
 
                           $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
                           
-                          $controllo = controllamail($mail);
+                          $controllo = controllamail($mail, $conn);
                           if ($controllo==true){
                               $controllo = controllonumero($_POST["telefono"]);
                               if ($controllo==true){
                                   
                                   $controllo = controllousername($_POST["username"], $conn);
                                   if ($controllo==true){
-                                    
-                                  $US = $_POST['username'];
-                                   $sql = "INSERT INTO clienti(UsernameCliente, Nome, Cognome, Telefono, Email, Password, Toponimo, Nomevia, Civico, idComuneCli, NumCreditCard, TipoCreditCard) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['password']."','".$_POST['citta']."','".$_POST['via']."','".$_POST['civico']."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
+                                    if (!empty($_POST['nome'])&&!empty($_POST['cognome'])&&!empty($_POST['password'])&&!empty($_POST['citta'])&&!empty($_POST['via'])&&!empty($_POST['civico'])&&!empty($_POST['comune'])&&!empty($_POST['numcred'])&&!empty($_POST['carta'])){
+                                      $sql = "INSERT INTO clienti(UsernameCliente, Nome, Cognome, Telefono, Email, Password, Toponimo, Nomevia, Civico, idComuneCli, NumCreditCard, TipoCreditCard) VALUES ('".$_POST['username']."','".$_POST['nome']."','".$_POST['cognome']."','".$_POST['telefono']."','".$mail."','".$_POST['password']."','".$_POST['citta']."','".$_POST['via']."','".$_POST['civico']."','".$_POST['comune']."','".$_POST['numcred']."','".$_POST['carta']."' )";
 
-                                    if (mysqli_query($conn, $sql)) {
-                                      
-                                    } else {
-                                      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                      if (mysqli_query($conn, $sql)) {
+                                        
+                                      } else {
+                                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                      }
+                                      $Checkin = $_SESSION['checkin'];
+                                      $Checkout = $_SESSION['checkout'];
+                                      $Prezz = $_SESSION['PrezzoF'];
+                                      $IdA = $_SESSION['IdAppartamenti'];
+                                      echo "Checkin ".$Checkin."<br>";
+                                      echo "Checkin ".$Checkout."<br>";
+                                      echo "Prezz ".$Prezz."<br>";
+                                      echo "IdA ".$IdA."<br>";
+                                      echo "Username ".$US."<br>";
+                                      $sql = "INSERT INTO `affitti`(`Checkin`, `Checkout`, `Import`, `idAppartamento`, `usernameCliente`) VALUES ('$Checkin','$Checkout',$Prezz,$IdA,'".$_POST["username"]."')";
+                                      if (mysqli_query($conn, $sql)) {
+                                        
+                                        echo "<Script>window.location.href='index.php';</Script>";
+                                      } else {
+                                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                      }
                                     }
-                                    $Checkin = $_SESSION['checkin'];
-                                    $Checkout = $_SESSION['checkout'];
-                                    $Prezz = $_SESSION['PrezzoF'];
-                                    $IdA = $_SESSION['IdAppartamenti'];
-                                    echo "Checkin ".$Checkin."<br>";
-                                    echo "Checkin ".$Checkout."<br>";
-                                    echo "Prezz ".$Prezz."<br>";
-                                    echo "IdA ".$IdA."<br>";
-                                    echo "Username ".$US."<br>";
-                                    $sql = "INSERT INTO `affitti`(`Checkin`, `Checkout`, `Import`, `idAppartamento`, `usernameCliente`) VALUES ('$Checkin','$Checkout',$Prezz,$IdA,'$US')";
-                                  if (mysqli_query($conn, $sql)) {
-                                    
-                                    echo "<Script>window.location.href='index.php';</Script>";
-                                  } else {
-                                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                                  }
                                   }
                                    else
                                    {
-                                    echo "<Script>alert('Errore nei dati')</Script>";
+                                    echo "<Script>alert('Errore nei dati inseriti')</Script>";
                                    }
                                   
                                   }
                                   else{
-                                    header("Refresh: 2");
+                                    echo "<Script>alert('Errore nei dati inseriti')</Script>";
                                   }
                               }
                               else{
-                                header("Refresh: 2");
+                                  $x=false;
+                                  $sql="SELECT UsernameCliente, Email, Password FROM clienti"; 
+                                  $result=mysqli_query($conn,$sql);
+                                  $x=0;
+                                  if (mysqli_num_rows($result) > 0){
+                                    
+                                      while($row=mysqli_fetch_array($result)){
+                                        
+                                          if ($_POST['password']==$row["Password"]&&$_POST['username']==$row["UsernameCliente"]&&$mail==$row["Email"]){
+                                            
+                                            $Checkin = $_SESSION['checkin'];
+                                            $Checkout = $_SESSION['checkout'];
+                                            $Prezz = $_SESSION['PrezzoF'];
+                                            $IdA = $_SESSION['IdAppartamenti'];
+                                            echo "Checkin ".$Checkin."<br>";
+                                            echo "Checkin ".$Checkout."<br>";
+                                            echo "Prezz ".$Prezz."<br>";
+                                            echo "IdA ".$IdA."<br>";
+                                            echo "Username ".$_POST["username"]."<br>";
+                                            
+                                            $sql = "INSERT INTO `affitti`(`Checkin`, `Checkout`, `Import`, `idAppartamento`, `usernameCliente`) VALUES ('$Checkin','$Checkout',$Prezz,$IdA,'".$_POST["username"]."')";
+                                            
+                                            if (mysqli_query($conn,$sql)) {
+                                              $x=true;
+                                              echo "<Script>window.location.href='index.php';</Script>";
+                                            } else {
+                                              echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                            }
+                                          }
+                                      } 
+                                  }
+                                  if ($x==false){
+                                    echo "<Script>alert('Errore nei dati inseriti')</Script>";
+                                  }
+                                
                               }
 
                           
