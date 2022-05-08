@@ -53,6 +53,8 @@ session_start();
       }
 
       if (isset($_POST["invia"])) {
+             
+
             $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
 
             $controllo = controllamail($mail);
@@ -68,12 +70,29 @@ session_start();
                   } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                   }
+                  
+
             }
       }
 
 
       if (isset($_SESSION["Controllo"])) { ?>
-
+            <?php 
+                  $Nome = $_POST['nome'];
+                  $Cognome = $_POST['cognome'];
+                  $Telefono = $_POST['telefono'];
+                  $sql = "SELECT IdProprietario FROM Propietari WHERE nome='$Nome' and cognome='$Cognome' and telefono='$Telefono'";
+                  $result = mysqli_query($conn, $sql);
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                  // output data of each row
+                  while($row = mysqli_fetch_assoc($result)) {
+                        $_SESSION['IdProprietario'] = $row["IdProprietario"];
+                        }
+                  } else {
+                  echo "0 results";
+                  }
+             ?>
             <div class="col-lg-8 mx-auto col-md-10 col-12">
 
                   <form action="upload.php" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form" method="post" enctype="multipart/form-data">

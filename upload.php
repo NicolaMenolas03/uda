@@ -29,19 +29,27 @@ if (isset($_POST['submit']) && isset($_FILES['file_1'])) {
 				move_uploaded_file($tmp_name, $img_upload_path);
 
 				// Insert into Database
-				echo "Toponimo".$_POST["Toponimo"]."<br>";
-				echo "Nomevia".$_POST["Nomevia"]."<br>";
-				echo "Civico".$_POST["Civico"]."<br>";
-				echo "idComuneApp".$_POST["idComuneApp"]."<br>";
-				echo "Prezzo".$_POST["Prezzo"]."<br>";
-				echo "Descrizione".$_POST["Descrizione"]."<br>";
-				echo "idProprietario".$_POST["idProprietario"]."<br>";
-				echo "Posizione".$_POST["Posizione"]."<br>";
-				echo "image".$_POST["image"]."<br>";
-				$sql = "INSERT INTO appartamenti(Toponimo, Nomevia, Civico, idComuneApp, Prezzo, Descrizione, idProprietario, Posizione, image) 
-				        VALUES('".$_POST["Toponimo"]."',".$_POST["Nomevia"]."',".$_POST["Civico"]."',".$_POST["comune"]."',".$_POST["Prezzo"]."',".$_POST["Descrizione"]."',".$_POST["idProprietario"].",".$_POST["Posizione"]."','$new_img_name')";
-				mysqli_query($conn, $sql);
-				session_destroy();
+				$Toponimo = $_POST["Toponimo"];
+				$NomeVia = $_POST["NomeVia"];
+				$Civico = $_POST["Civico"];
+				$idComuneApp = $_POST["comune"];
+				$Prezzo = $_POST["Prezzo"];
+				$Descrizione = $_POST["Descrizione"];
+				$IDPROP = $_SESSION['IdProprietario'];
+				$Posizione = $_POST["Posizione"]."<br>";
+				$sql = "INSERT INTO appartamenti(Toponimo, NomeVia, Civico, idComuneApp, Prezzo, Descrizione, IdProprietario, Posizione, image) 
+				        VALUES('$Toponimo', '$NomeVia', $Civico, $idComuneApp, '$Prezzo', '$Descrizione', $IDPROP, '$Posizione', '$new_img_name')";
+				
+				if (mysqli_query($conn, $sql)) {
+					echo "New record created successfully";
+				} else {
+					echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+				}
+				
+				mysqli_close($conn);
+
+				
+				
 			}else {
 				$em = "You can't upload files of this type";
 		        header("Location: InserisciCasa.php?error=$em");

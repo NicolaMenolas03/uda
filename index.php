@@ -1,7 +1,12 @@
 <?php 
+<<<<<<< Updated upstream
      error_reporting(0);
      session_destroy(); 
 ?>
+=======
+session_start();
+session_destroy(); ?>
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once('header.php'); ?>
