@@ -44,10 +44,26 @@ session_start();
             </div>
       <?php
       }
-      function controllamail($mail)
+      function controlla($conn, $mail, $telefono)
       {
             if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                  return true;
+                  $sql = "SELECT Email, Telefono FROM Proprietari ";
+                  $result = mysqli_query($conn, $sql);
+                  $c=0;
+                  if (mysqli_num_rows($result) > 0) {
+                  // output data of each row
+                        while($row = mysqli_fetch_assoc($result)) {
+                              if ($row["Email"]==$mail || $row["Telefono"]==$telefono){
+                                    $c=1;
+                              }
+                        }
+                  }
+                  if ($c==1){
+                        return false;
+                  }
+                  else{
+                        return true;
+                  }
             } else {
                   return false;
             }
@@ -57,8 +73,8 @@ session_start();
              
 
             $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
-
-            $controllo = controllamail($mail);
+            $telefono = $_POST["telefono"];
+            $controllo = controlla($conn,$mail,$telefono);
             if ($controllo == true) {
                   $_SESSION["Controllo"] = 1;
                   $sql = "INSERT INTO Proprietari(Nome, Cognome, Telefono, Email) VALUES ('" . $_POST["nome"] . "','" . $_POST["cognome"] . "','" . $_POST["telefono"] . "','" . $mail . "')";

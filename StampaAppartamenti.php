@@ -29,6 +29,10 @@
 <?php require_once('header.php');
 session_start();
 error_reporting(0);
+if(!($_SESSION['checkin']) || !($_SESSION['checkout']))
+{
+    echo "<Script>window.location.href='SceltaDate.php';</Script>";
+}
 //GESTIONE IMMAGINI
 ?>
 
