@@ -802,3 +802,17 @@ https://templatemo.com/tm-538-digital-trend
   text-decoration: none;
   cursor: pointer;
 }
+.input[type=submit] {
+  border: 2px solid var(--secondary-color);
+  background-color: white;
+  border-radius: var(--border-radius-large);
+  color: var(--secondary-color);
+  font-family: var(--font-bold-family);
+  padding: 0.6em 2em 0.8em 2em;
+}
+
+.input[type=submit]:hover,
+.secondary.active {
+  background: var(--secondary-color);
+  color: var(--white-color);
+}

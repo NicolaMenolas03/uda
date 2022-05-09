@@ -79,17 +79,27 @@
             <input type="submit" class="form-control" id="submit-button" name="submit" value="Paga">
           </div> -->
           <div class="col-lg-5 mx-auto col-7">
-            <input type="submit" class="form-control" name="Login" id="submit-button" value="Login">
+          <input type="submit" class="form-control" name="Login" id="submit-button" value="Accedi">
+            <center><input type="submit" class="input" name="Registrati" id="submit-button2" value="Non sei ancora registrato? Registrati ora!"></center>
           </div>
           <div class="col-lg-5 mx-auto col-7">
-            <input type="submit" class="form-control" name="Registrati" id="submit-button" value="Registrati">
+            
           </div>
         </div>
 
       </form>
     </div>
+<!--POPUP -->
+<div id="myModal" class="modal">
 
-      <?php
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+<?php
           function controllamail($mail, $conn){
               if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
                 $sql="SELECT Email FROM clienti"; 
@@ -272,6 +282,23 @@
 </section>
 
      </body>
+     <script>
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("submit-button");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
     <?php 
         require_once("footer.php");
     
