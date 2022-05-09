@@ -728,6 +728,17 @@ https://templatemo.com/tm-538-digital-trend
     width: 40%;
     margin-left: 33em;
   }
+  .cards-no{
+    filter:brightness(60%);
+    display: flex;
+    justify-content: flex-start;
+    padding: 1em;
+    line-height: 1.5em;
+    background-color: #f0f8ff;
+    border-radius: 30px;
+    width: 40%;
+    margin-left: 33em;
+  }
   .cards:hover{
     display: flex;
     justify-content: flex-start;
@@ -742,4 +753,16 @@ https://templatemo.com/tm-538-digital-trend
   .title{
     color:var(--secondary-color);
     font-family: "Plain-Bold";
+  }
+
+  .prices{
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+  }
+
+  .prices2{
+      font-size: var(--h2-font-size);
+      font-weight: 100;
+      width:70px;
   }
