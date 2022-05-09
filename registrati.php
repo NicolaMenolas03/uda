@@ -22,29 +22,29 @@
       <form method="post" class="contact-form" data-aos="fade-up" data-aos-delay="300" role="form">
         <div class="row">
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="username" placeholder="Username" >
+            <input type="text" class="form-control" name="username" placeholder="Username">
           </div>
           <div class="col-lg-6 col-12">
-            <input type="mail" class="form-control" name="mail" placeholder="E-mail" >
+            <input type="mail" class="form-control" name="mail" placeholder="E-mail">
           </div>
           <div class="col-lg-6 col-12">
-            <input type="password" class="form-control" name="password" placeholder="Password"  >
+            <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
           <?php if (isset($_SESSION["Registrati"])){?>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="nome" placeholder="Nome" >
+            <input type="text" class="form-control" name="nome" placeholder="Nome">
           </div>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="cognome" placeholder="Cognome" >
+            <input type="text" class="form-control" name="cognome" placeholder="Cognome">
           </div>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono" >
+            <input type="text" class="form-control" name="telefono" placeholder="Numero di Telefono">
           </div>
           <div class="col-lg-6 col-12">
-            <input type="text" class="form-control" name="citta" placeholder="Città" >
+            <input type="text" class="form-control" name="citta" placeholder="Città">
           </div>
           <div class="col-lg-6 col-12" style="margin-top:11px;">
-            <select name="comune" id="comuni" class="custo-select" >
+            <select name="comune" id="comuni" class="custo-select">
               <?php
               
 
@@ -79,8 +79,8 @@
             <input type="submit" class="form-control" id="submit-button" name="submit" value="Paga">
           </div> -->
           <div class="col-lg-5 mx-auto col-7">
-          <input type="submit" class="form-control" name="Login" id="submit-button" value="Accedi">
-            <center><input type="submit" class="input" name="Registrati" id="submit-button2" value="Non sei ancora registrato? Registrati ora!"></center>
+          <button type="submit" class="form-control" name="Login" id="submit-button">Accedi</button>
+            <center><button type="submit" class="input" name="Registrati" id="submit-button2" value="">Non sei ancora registrato? Registrati ora!</button></center>
           </div>
           <div class="col-lg-5 mx-auto col-7">
             
@@ -151,18 +151,16 @@
 
           }
 
-          if (isset($_POST["Registrati"])){
-            $_SESSION["Registrati"]=1;
-            echo "<script>window.location.href='registrati.php';</script>";
-          }
+          if (isset($_POST["Registrati"])||isset($_POST["Login"])){
+            if (isset($_POST["Registrati"])){
+              $_SESSION["Registrati"]=1;
+              echo "<script>window.location.href='registrati.php';</script>";
+            }
+            if (isset($_POST["Login"])){
+              unset($_SESSION["Registrati"]);
+              echo "<script>window.location.href='registrati.php';</script>";
 
-          if (isset($_POST["Login"])){
-            unset($_SESSION["Registrati"]);
-            echo "<script>window.location.href='registrati.php';</script>";
-          }
-
-          if (isset($_POST["submit"])){
-            
+            }
 
               $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
               
@@ -283,21 +281,21 @@
 
      </body>
      <script>
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("submit-button");
-var span = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-span.onclick = function() {
-  modal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("submit-button");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
 
     <?php 
         require_once("footer.php");
