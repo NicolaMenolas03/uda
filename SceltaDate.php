@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 <body>
-    
+<h2 style="text-align: center; padding:20px" class="text-black aos-init aos-animate" data-aos="fade-up">Scegli le tue date</h2>
 <div class="container" style="padding: 0 0 15 0; width:900px;" data-aos="fade-up" data-aos-delay="30"><br>
     <form action='SceltaDate.php' method='POST' class="row g-3 needs-validation" novalidate>
         <div class="col-md-1">
@@ -80,7 +80,7 @@ if(isset($_POST['submit']))
         echo "<script>window.location.href='StampaAppartamenti.php';</script>";
     }
     else{
-        
+        echo "<p style='text-align: center; padding:20px;color:red' data-aos='fade-up' height='100px'><i class='bx bxs-error-alt' style='color:#ff0000' ></i> Le date inserite sono errate</p>";
         $_SESSION['checkin']="";
         $_SESSION['checkout']="";      
     }
@@ -126,10 +126,9 @@ else
                     <div class="col-lg-7 mx-auto col-md-10 col-12">
                          <div class="about-info">
 
-                              <h2 class="mb-4" data-aos="fade-up">the best <strong>Digital Marketing agency</strong> in Rio de Janeiro</h2>
+                              <h2 class="mb-4" data-aos="fade-up">Scegli un bed e breakfast <strong>senza impegno e senza sforzo</strong> in Puglia</h2>
 
-                              <p class="mb-0" data-aos="fade-up">Total 5 HTML pages are included in this template from TemplateMo website. Please check 2 <a href="blog.html">blog</a> pages, <a href="project-detail.html">project</a> page, and <a href="contact.html">contact</a> page. 
-                              <br><br>You are <strong>allowed</strong> to use this template for commercial or non-commercial purpose. You are NOT allowed to redistribute the template ZIP file on template collection websites.</p>
+                              <p class="mb-0" data-aos="fade-up">A Bari siamo conosciuti per essere i Bed & Breakfast più affidabili, sicuri e smart della città. 
                          </div>
 
                          <div class="about-image" data-aos="fade-up" data-aos-delay="200">
