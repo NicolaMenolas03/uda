@@ -158,6 +158,7 @@ session_start();
                               </div>
                               <div class="col-lg-5 mx-auto col-7">
                                     <input type="submit" class="form-control" name="submit" value="Invia" id="submit-button">
+                                    <center><button  class="secondary" onclick="window.location.href='StampaProprietari.php'">Visualizza gli appartamenti che hai affittato</button></center>
                               </div>
                               
 

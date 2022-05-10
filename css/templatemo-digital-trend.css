@@ -739,6 +739,16 @@ https://templatemo.com/tm-538-digital-trend
     width: 40%;
     margin-left: 33em;
   }
+  .cards-prop{
+    display: flex;
+    justify-content: flex-start;
+    padding: 1em;
+    line-height: 1.5em;
+    background-color: #f0f8ff;
+    border-radius: 30px;
+    width: 40%;
+    margin-left: 33em;
+  }
   .cards:hover{
     display: flex;
     justify-content: flex-start;
@@ -802,7 +812,7 @@ https://templatemo.com/tm-538-digital-trend
   text-decoration: none;
   cursor: pointer;
 }
-.input[type=submit] {
+.input[type=submit],.secondary {
   border: 2px solid var(--secondary-color);
   background-color: white;
   border-radius: var(--border-radius-large);
@@ -812,7 +822,7 @@ https://templatemo.com/tm-538-digital-trend
 }
 
 .input[type=submit]:hover,
-.secondary.active {
+.secondary:hover{
   background: var(--secondary-color);
   color: var(--white-color);
 }
