@@ -91,16 +91,17 @@ session_start();
 
             }
 
-                  $Nome = $_POST['nome'];
                   $Cognome = $_POST['cognome'];
-                  $Telefono = $_POST['telefono'];
-                  $sql = "SELECT IdProprietario FROM Proprietari WHERE nome='$Nome' and cognome='$Cognome' and telefono='$Telefono'";
+                  $sql = "SELECT IdProprietario FROM Proprietari WHERE Email='$mail' or telefono='$telefono'";
                   $result = mysqli_query($conn, $sql);
                   
                   if (mysqli_num_rows($result) > 0) {
                   // output data of each row
-                  while($row = mysqli_fetch_assoc($result)) {
-                        $_SESSION['IdProprietario'] = $row["IdProprietario"];
+                        while($row = mysqli_fetch_assoc($result)) {
+                              $_SESSION['IdProprietario'] = $row["IdProprietario"];
+                              $_SESSION["Controllo"] = 1;
+                              echo "<Script>window.location.href='InserisciCasa.php';</Script>";
+
                         }
                   } else {
                   echo "0 results";
