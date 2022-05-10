@@ -2,7 +2,6 @@
 require_once('header.php');
 require_once("ConnessionDB.php");
 session_start();
-$_SESSION['IdProprietario']=3;
 $IdProp = $_SESSION['IdProprietario'];
 $sql = "SELECT * FROM appartamenti WHERE IdProprietario=$IdProp"; 
 $result = mysqli_query($conn, $sql); 

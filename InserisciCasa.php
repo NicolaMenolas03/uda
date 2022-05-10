@@ -47,7 +47,7 @@ session_start();
       function controlla($conn, $mail, $telefono)
       {
             if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                  $sql = "SELECT Email, Telefono FROM Proprietari ";
+                  $sql = "SELECT Email, Telefono FROM Proprietari";
                   $result = mysqli_query($conn, $sql);
                   $c=0;
                   if (mysqli_num_rows($result) > 0) {

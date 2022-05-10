@@ -102,12 +102,12 @@
 <?php
           function controllamail($mail, $conn){
               if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
-                $sql="SELECT Email FROM clienti"; 
+                $sql="SELECT Email, Password FROM clienti"; 
                 $result=mysqli_query($conn,$sql);
                 $x=0;
                 if (mysqli_num_rows($result) > 0){
                     while($row=mysqli_fetch_array($result)){
-                        if ($mail==$row["Email"]){
+                        if ($mail==$row["Email"]&&$_POST["password"]==$row["Password"]){
                           return false;
                         }
                     } 
@@ -154,12 +154,9 @@
           if (isset($_POST["Registrati"])||isset($_POST["Login"])){
             if (isset($_POST["Registrati"])){
               $_SESSION["Registrati"]=1;
-              echo "<script>window.location.href='registrati.php';</script>";
             }
             if (isset($_POST["Login"])){
               unset($_SESSION["Registrati"]);
-              echo "<script>window.location.href='registrati.php';</script>";
-
             }
 
               $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
@@ -199,12 +196,27 @@
                       }
                         else
                         {
-                        echo "<Script>alert('Errore nei dati inseriti')</Script>";
+                          echo "<script>window.location.href='registrati.php';</script>";
                         }
                       
                       }
                       else{
-                        echo "<Script>alert('Errore nei dati inseriti')</Script>";
+                          $Checkin = $_SESSION['checkin'];
+                          $Checkout = $_SESSION['checkout'];
+                          $Prezz = $_SESSION['PrezzoF'];
+                          $IdA = $_SESSION['IdAppartamenti'];
+                          echo "Checkin ".$Checkin."<br>";
+                          echo "Checkin ".$Checkout."<br>";
+                          echo "Prezz ".$Prezz."<br>";
+                          echo "IdA ".$IdA."<br>";
+                          echo "Username ".$US."<br>";
+                          $sql = "INSERT INTO `affitti`(`Checkin`, `Checkout`, `Import`, `idAppartamento`, `usernameCliente`) VALUES ('$Checkin','$Checkout',$Prezz,$IdA,'".$_POST["username"]."')";
+                          if (mysqli_query($conn, $sql)) {
+                            
+                            echo "<Script>window.location.href='index.php';</Script>";
+                          } else {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                          }
                       }
                   }
                   else{
@@ -240,7 +252,7 @@
                           } 
                       }
                       if ($x==false){
-                        echo "<Script>alert('Errore nei dati inseriti')</Script>";
+                        echo "<script>window.location.href='registrati.php';</script>";
                       }
                     
                   }
