@@ -30,7 +30,7 @@
           <div class="col-lg-6 col-12">
             <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
-          <?php if (isset($_SESSION["Registrati"])){?>
+          <?php if ($_SESSION["Registrati"]==2){?>
           <div class="col-lg-6 col-12">
             <input type="text" class="form-control" name="nome" placeholder="Nome">
           </div>
@@ -79,8 +79,17 @@
             <input type="submit" class="form-control" id="submit-button" name="submit" value="Paga">
           </div> -->
           <div class="col-lg-5 mx-auto col-7">
-          <button type="submit" class="form-control" name="Login" id="submit-button">Accedi</button>
-            <center><button type="submit" class="input" name="Registrati" id="submit-button2" value="">Non sei ancora registrato? Registrati ora!</button></center>
+          <?php 
+            if ($_SESSION["Registrati"]==2){
+            $login="Sei già registrato? Accedi ora!";
+            $registrati="Registrati e paga!";
+          }elseif($_SESSION["Registrati"]==1){
+            $login="Accedi e paga!";
+            $registrati="Non sei ancora registrato? Registrati ora!";
+          }
+            ?>
+          <button type="submit" class="form-control" name="Login" id="submit-button"><?php echo $login;?></button>
+            <center><button type="submit" class="input" name="Registrati" id="submit-button2" value=""><?php echo $registrati;?></button></center>
           </div>
           <div class="col-lg-5 mx-auto col-7">
             
@@ -89,16 +98,6 @@
 
       </form>
     </div>
-<!--POPUP -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
 <?php
           function controllamail($mail, $conn){
               if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
@@ -153,10 +152,10 @@
 
           if (isset($_POST["Registrati"])||isset($_POST["Login"])){
             if (isset($_POST["Registrati"])){
-              $_SESSION["Registrati"]=1;
+              $_SESSION["Registrati"]=2;
             }
             if (isset($_POST["Login"])){
-              unset($_SESSION["Registrati"]);
+              $_SESSION["Registrati"]=1;
             }
 
               $mail = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
@@ -292,22 +291,6 @@
 </section>
 
      </body>
-     <script>
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("submit-button");
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
-          modal.style.display = "block";
-        }
-        span.onclick = function() {
-          modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-      </script>
 
     <?php 
         require_once("footer.php");
