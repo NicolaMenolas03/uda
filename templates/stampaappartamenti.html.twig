@@ -2,4 +2,9 @@
 
 {% block content %}
 	{{ dump(session) }}
+	<div class="availableWrapper">
+		{% for f in available %}
+			<div> QUI IL TEMPLATE DEL SINGOLO APP. </div>
+		{% endfor %}
+	</div>
 {% endblock content %}
