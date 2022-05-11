@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<h2 style="text-align: center; padding:20px" class="text-black aos-init aos-animate" data-aos="fade-up">Scegli le tue date</h2>
+		<div class="container" style="padding: 0 0 15 0; width:900px;" data-aos="fade-up" data-aos-delay="30"><br>
+		    <form action='StampaAppartamenti.php' method='POST' class="row g-3 needs-validation" novalidate>
+		        <div class="col-md-1">
+		        </div>
+		        <div class="col-md-3">
+		            <label for="validationCustom03" class="form-label">Città</label>
+		            <input type="text" class="form-control" id="validationCustom03"  placeholder="Dove vuoi andare?" name="comune">
+		                <div class="invalid-feedback">
+		                    Inserisci una destinazione per iniziare la ricerca
+		                </div>
+		        </div>
+		        <div class="col-md-3">
+		            <label for="validationCustom01" class="form-label">Check-in</label>
+		            <input type="date" class="form-control" id="validationCustom01" value="Mark" name="checkin" required>
+		                <div class="invalid-feedback">
+		                    Inserire una data valida
+		                </div>
+		        </div>
+		        <div class="col-md-3">
+		            <label for="validationCustom02" class="form-label">Check-out</label>
+		            <input type="date" class="form-control" id="validationCustom02" value="Otto" name="checkout" required>
+		                <div class="invalid-feedback">
+		                    Inserire una data valida
+		                </div>
+		        </div>
+		        <div class="col-md-1">
+		            <label for="validationCustom04" class="form-label" style="color:transparent;">.</label>
+		            <button class="btn button_date" id="validationCustom04" name="submit" type="submit">Cerca</button>
+		        </div>
+		    </form>
+		</div>
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="gallery-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		         <img src="/static/img/1.jpg" class="modal-img" alt="modal img">
+		      </div>
+		    </div>
+		  </div>
+		</div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		{% block site_title %}{% endblock %}
+	</title>
+	{% block css %}
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/css/component.css">
+		<link rel="stylesheet" href="/static/css/demo.css">
+		<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/static/css/aos.css">
+		<link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
+		{% block page_css %}
+			<link rel="stylesheet" href="/static/css/templatemo-digital-trend.css">
+		{% endblock %}
+	{% endblock %}
+	{% block js_head %}{% endblock %}
+</head>
+<body class="{% block page_namespace %}{% endblock %}">
+	
+	{% block header %}
+		{% include "header.html.twig" %}
+	{% endblock %}
+	
+	{% block content %}{% endblock %}
+	
+	{% block footer %}
+		{% include "footer.html.twig" %}
+	{% endblock %}
+
+	{% block js %}
+		<script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/aos.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/smoothscroll.js"></script>
+    <script src="/static/js/custom.js"></script>
+	{% endblock %}
+</body>
+</html>

@@ -1,4 +1,4 @@
-USE brx553jfhvrjufqsjwzs;
+USE uda;
 
 Create TABLE Proprietari(
 IdProprietario INTEGER AUTO_INCREMENT primary key not null,
