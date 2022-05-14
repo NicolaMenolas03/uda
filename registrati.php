@@ -83,7 +83,7 @@
             if ($_SESSION["Registrati"]==2){
             $login="Sei già registrato? Accedi ora!";
             $registrati="Registrati e paga!";
-          }elseif($_SESSION["Registrati"]==1){
+          }elseif($_SESSION["Registrati"]==1||!isset($_SESSION["Registrati"])){
             $login="Accedi e paga!";
             $registrati="Non sei ancora registrato? Registrati ora!";
           }
